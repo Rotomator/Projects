@@ -1,0 +1,11 @@
+
+Instructions :-
+
+Step 1 - Go to the required site and click on Download CSV and Click Start 
+Step 2 - Read the downloaded CSV and write contents of CSV to appropriate fields. 
+Step 3 - On click of submit, there might be a random pop-up with text indicating to select the appropriate push button 
+
+Note: There may case where text indicating to select an appropriate push button may not be available.
+      In this case, select the close pop-up option. 
+
+Step 4: Continue the same process until end of CSV
