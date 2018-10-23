@@ -1,0 +1,27 @@
+{
+  "name": "RPA_Challenges",
+  "description": "Blank Project",
+  "main": "Main.xaml",
+  "dependencies": {
+    "UiPath.Mail.Activities": "[1.1.6562.21018]",
+    "UiPath.System.Activities": "[18.3.6848.19314]",
+    "UiPath.UIAutomation.Activities": "[18.3.6848.19335]",
+    "UiPath.Excel.Activities": "[2.4.6856.17931]",
+    "UiPathTeam.Excel.Extensions.Activities": "[1.0.4]"
+  },
+  "schemaVersion": "3.2",
+  "studioVersion": "18.1.4.0",
+  "projectVersion": "1.0.6847.29227",
+  "runtimeOptions": {
+    "autoDispose": false,
+    "excludedLoggedData": [
+      "Private:*",
+      "*password*"
+    ]
+  },
+  "projectType": "Workflow",
+  "libraryOptions": {
+    "includeOriginalXaml": false,
+    "privateWorkflows": []
+  }
+}

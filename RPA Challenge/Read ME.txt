@@ -1,0 +1,7 @@
+
+Instructions :-
+
+Step 1 - Open Browser and go to the required site. 
+Step 2 - Download the Excel and read the contents of the Excel to memory. 
+Step 3 - Write the contents of excels to it's appropriate feilds in web-form. 
+Step 4 - Continue the same process until all contents of excel are entered to the web form.
