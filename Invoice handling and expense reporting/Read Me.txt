@@ -1,0 +1,15 @@
+
+Instructions :-
+
+Step 1 : Step up your mail account using IMAP mail messages
+Step 2 : Save the taxi bill attachments to a required folder
+Step 3 : Use System.IO.Directory.GetFiles to get the absolute path for all the downloaded attachments 
+         and save them to file list
+Step 4 : For each file
+          a) open run and enter the absolute file path
+          b) use uipath screen scrapping wizard to extract key information 
+             (Travel date, Invoice ID, Start time, end time, Travel Fare)
+          c) Write the extracted data to an excel sheet
+          d) Repeat until EOF
+Step 5 : Calculate Total Fare and write them to excel.
+
