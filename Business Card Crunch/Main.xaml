@@ -1,0 +1,1607 @@
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="Main_1"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:s="clr-namespace:System;assembly=mscorlib"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing"
+ xmlns:sd1="clr-namespace:System.Data;assembly=System.Data"
+ xmlns:snm="clr-namespace:System.Net.Mail;assembly=System"
+ xmlns:ui="http://schemas.uipath.com/workflow/activities"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Plugin.Workflow</AssemblyReference>
+      <AssemblyReference>UiPath.IntelligentOCR</AssemblyReference>
+      <AssemblyReference>UiPath.Python</AssemblyReference>
+      <AssemblyReference>UiPath.PDF</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Flowchart sap2010:WorkflowViewState.IdRef="Flowchart_1">
+    <Flowchart.Variables>
+      <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="Messages" />
+      <Variable x:TypeArguments="x:String" Name="pdf_text" />
+      <Variable x:TypeArguments="x:Int32" Name="counter" />
+      <Variable x:TypeArguments="x:Int32" Name="total" />
+      <Variable x:TypeArguments="x:String" Name="outText" />
+      <Variable x:TypeArguments="s:String[]" Name="filelist" />
+      <Variable x:TypeArguments="x:Int32" Name="vCounter" />
+      <Variable x:TypeArguments="x:String" Name="vPhone" />
+      <Variable x:TypeArguments="x:String" Name="vCompanyWebsite" />
+      <Variable x:TypeArguments="x:String" Name="vAddress" />
+      <Variable x:TypeArguments="x:String" Name="vname" />
+      <Variable x:TypeArguments="x:String" Name="vPosition" />
+      <Variable x:TypeArguments="x:String" Name="vCompany" />
+      <Variable x:TypeArguments="x:String" Name="vEmail" />
+      <Variable x:TypeArguments="x:String" Name="vAddress2" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="eCounter" />
+    </Flowchart.Variables>
+    <Flowchart.StartNode>
+      <FlowStep x:Name="__ReferenceID3" sap2010:WorkflowViewState.IdRef="FlowStep_6">
+        <Sequence DisplayName="Get Buisness Cards " sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <Assign DisplayName="Get file names" sap2010:WorkflowViewState.IdRef="Assign_1">
+            <Assign.To>
+              <OutArgument x:TypeArguments="s:String[]">[filelist]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="s:String[]">[System.IO.Directory.GetFiles("C:\Users\Naveen\Documents\uipath projects\Buisness cards\cards\")]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign sap2010:WorkflowViewState.IdRef="Assign_4">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Int32">[vCounter]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Int32">[filelist.Length]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign sap2010:WorkflowViewState.IdRef="Assign_21">
+            <Assign.To>
+              <OutArgument x:TypeArguments="ui:GenericValue">[eCounter]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="ui:GenericValue">[1]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+        <FlowStep.Next>
+          <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_7">
+            <Sequence DisplayName="Read Cards to Identify Company" sap2010:WorkflowViewState.IdRef="Sequence_17">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="ui:Image" Name="outImage" />
+              </Sequence.Variables>
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_6">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Int32">[vCounter]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Int32">[vCounter-1]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <ui:LoadImage DisplayName="Load Image" FileName="[filelist.GetValue(vCounter).ToString]" sap2010:WorkflowViewState.IdRef="LoadImage_2" Image="[outImage]" />
+              <ui:MicrosoftOCR FilterRegion="{x:Null}" DisplayName="Microsoft OCR" ExtractWords="True" sap2010:WorkflowViewState.IdRef="MicrosoftOCR_4" Image="[outImage]" Language="en" Profile="Legacy" Scale="1" Text="[outText]" />
+            </Sequence>
+            <FlowStep.Next>
+              <FlowDecision x:Name="__ReferenceID4" Condition="[outText.Contains(&quot;@ke.com&quot;)]" DisplayName="Check Company 1" sap2010:WorkflowViewState.IdRef="FlowDecision_4">
+                <FlowDecision.True>
+                  <FlowStep x:Name="__ReferenceID5" sap2010:WorkflowViewState.IdRef="FlowStep_8">
+                    <Sequence DisplayName="Detail Bcard details using OCR" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                      <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send Hotkey" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_1" Key="r" KeyModifiers="Win" SendWindowMessages="False" SpecialKey="False">
+                        <ui:SendHotkey.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
+                        </ui:SendHotkey.Target>
+                      </ui:SendHotkey>
+                      <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" Activate="True" ClickBeforeTyping="False" DelayMS="2000" DisplayName="Type Into 'Edit'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_1" SendWindowMessages="False" SimulateType="False" Text="[filelist.GetValue(vCounter).ToString + &quot;[k(enter)]&quot;]">
+                        <ui:TypeInto.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="d55161dfa227e34a2bd67fd86eeb57e0" Selector="&lt;wnd app='explorer.exe' cls='#32770' title='Run' /&gt;&lt;wnd ctrlid='12298' /&gt;&lt;wnd ctrlid='1001' /&gt;" WaitForReady="INTERACTIVE" />
+                        </ui:TypeInto.Target>
+                      </ui:TypeInto>
+                      <ui:GetOCRText Text="{x:Null}" WordsInfo="{x:Null}" DisplayName="Get OCR Text 'client'" sap2010:WorkflowViewState.IdRef="GetOCRText_1">
+                        <ui:GetOCRText.OCREngine>
+                          <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
+                            <ActivityFunc.Argument>
+                              <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                            </ActivityFunc.Argument>
+                            <ui:MicrosoftOCR FilterRegion="{x:Null}" DisplayName="Microsoft OCR" ExtractWords="True" sap2010:WorkflowViewState.IdRef="MicrosoftOCR_5" Image="[Image]" Language="en" Profile="Legacy" Scale="2" Text="[vname]" />
+                          </ActivityFunc>
+                        </ui:GetOCRText.OCREngine>
+                        <ui:GetOCRText.Target>
+                          <ui:Target Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="a377ae2448003df457410f9730108109" Selector="&lt;wnd app='rundll32.exe' cls='Photo_Lightweight_Viewer' omit:title='BusinessCard1.png - Windows Photo Viewer' /&gt;&lt;wnd cls='Photos_PhotoCanvas' /&gt;&lt;ctrl role='client' /&gt;" WaitForReady="INTERACTIVE">
+                            <ui:Target.ClippingRegion>
+                              <ui:Region Rectangle="567, 80, 446, 76" />
+                            </ui:Target.ClippingRegion>
+                          </ui:Target>
+                        </ui:GetOCRText.Target>
+                      </ui:GetOCRText>
+                      <ui:GetOCRText Text="{x:Null}" WordsInfo="{x:Null}" DisplayName="Get OCR Text 'client'" sap2010:WorkflowViewState.IdRef="GetOCRText_2">
+                        <ui:GetOCRText.OCREngine>
+                          <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
+                            <ActivityFunc.Argument>
+                              <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                            </ActivityFunc.Argument>
+                            <ui:MicrosoftOCR FilterRegion="{x:Null}" DisplayName="Microsoft OCR" ExtractWords="True" sap2010:WorkflowViewState.IdRef="MicrosoftOCR_6" Image="[Image]" Language="en" Profile="Legacy" Scale="2" Text="[vPosition]" />
+                          </ActivityFunc>
+                        </ui:GetOCRText.OCREngine>
+                        <ui:GetOCRText.Target>
+                          <ui:Target Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="dc5c839fab52630256c17b29ec928d4d" Selector="&lt;wnd app='rundll32.exe' cls='Photo_Lightweight_Viewer' omit:title='BusinessCard2.png - Windows Photo Viewer' /&gt;&lt;wnd cls='Photos_PhotoCanvas' /&gt;&lt;ctrl role='client' /&gt;" WaitForReady="INTERACTIVE">
+                            <ui:Target.ClippingRegion>
+                              <ui:Region Rectangle="592, 145, 356, 69" />
+                            </ui:Target.ClippingRegion>
+                          </ui:Target>
+                        </ui:GetOCRText.Target>
+                      </ui:GetOCRText>
+                      <ui:GetOCRText Text="{x:Null}" WordsInfo="{x:Null}" DisplayName="Get OCR Text 'client'" sap2010:WorkflowViewState.IdRef="GetOCRText_3">
+                        <ui:GetOCRText.OCREngine>
+                          <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
+                            <ActivityFunc.Argument>
+                              <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                            </ActivityFunc.Argument>
+                            <ui:MicrosoftOCR FilterRegion="{x:Null}" DisplayName="Microsoft OCR" ExtractWords="True" sap2010:WorkflowViewState.IdRef="MicrosoftOCR_7" Image="[Image]" Language="en" Profile="Legacy" Scale="1" Text="[vCompany]" />
+                          </ActivityFunc>
+                        </ui:GetOCRText.OCREngine>
+                        <ui:GetOCRText.Target>
+                          <ui:Target Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="be829c7d9a88ac3cb9b0d48e2dbb6e2e" Selector="&lt;wnd app='rundll32.exe' cls='Photo_Lightweight_Viewer' omit:title='BusinessCard1.png - Windows Photo Viewer' /&gt;&lt;wnd cls='Photos_PhotoCanvas' /&gt;&lt;ctrl role='client' /&gt;" WaitForReady="INTERACTIVE">
+                            <ui:Target.ClippingRegion>
+                              <ui:Region Rectangle="596, 247, 344, 58" />
+                            </ui:Target.ClippingRegion>
+                          </ui:Target>
+                        </ui:GetOCRText.Target>
+                      </ui:GetOCRText>
+                      <ui:GetOCRText Text="{x:Null}" WordsInfo="{x:Null}" DisplayName="Get OCR Text 'client'" sap2010:WorkflowViewState.IdRef="GetOCRText_4">
+                        <ui:GetOCRText.OCREngine>
+                          <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
+                            <ActivityFunc.Argument>
+                              <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                            </ActivityFunc.Argument>
+                            <ui:MicrosoftOCR FilterRegion="{x:Null}" DisplayName="Microsoft OCR" ExtractWords="True" sap2010:WorkflowViewState.IdRef="MicrosoftOCR_8" Image="[Image]" Language="en" Profile="Legacy" Scale="1" Text="[vEmail]" />
+                          </ActivityFunc>
+                        </ui:GetOCRText.OCREngine>
+                        <ui:GetOCRText.Target>
+                          <ui:Target Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="da7a2571a08af4a337d4e851f90df21a" Selector="&lt;wnd app='rundll32.exe' cls='Photo_Lightweight_Viewer' omit:title='BusinessCard1.png - Windows Photo Viewer' /&gt;&lt;wnd cls='Photos_PhotoCanvas' /&gt;&lt;ctrl role='client' /&gt;" WaitForReady="INTERACTIVE">
+                            <ui:Target.ClippingRegion>
+                              <ui:Region Rectangle="573, 305, 390, 49" />
+                            </ui:Target.ClippingRegion>
+                          </ui:Target>
+                        </ui:GetOCRText.Target>
+                      </ui:GetOCRText>
+                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" Buttons="Ok" DisplayName="Message Box" sap2010:WorkflowViewState.IdRef="MessageBox_7" Text="[&quot;Name : &quot; + vname +  vbCrLf + &quot;Company : &quot; + vCompany +  vbCrLf + &quot;Position : &quot; +  vPosition +  vbCrLf + &quot;Email : &quot; + vEmail]" TopMost="True" />
+                      <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send Hotkey 'rundll32.exe BusinessCa...'" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_4" Key="f4" KeyModifiers="Alt" SendWindowMessages="False" SpecialKey="True">
+                        <ui:SendHotkey.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="c4002466af248ffa6dc016280cf574e6" Selector="&lt;wnd app='rundll32.exe' cls='Photo_Lightweight_Viewer' omit:title='BusinessCard5.png - Windows Photo Viewer' /&gt;" WaitForReady="INTERACTIVE" />
+                        </ui:SendHotkey.Target>
+                      </ui:SendHotkey>
+                    </Sequence>
+                    <FlowStep.Next>
+                      <FlowSwitch x:TypeArguments="x:Int32" x:Name="__ReferenceID1" DisplayName="Flow Switch" Expression="1" sap2010:WorkflowViewState.IdRef="FlowSwitch`1_1">
+                        <FlowSwitch.Default>
+                          <FlowStep x:Name="__ReferenceID12" sap2010:WorkflowViewState.IdRef="FlowStep_14">
+                            <Sequence DisplayName="Add Details to Excel" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                              <Sequence.Variables>
+                                <Variable x:TypeArguments="ui:GenericValue" Name="vfirstName" />
+                                <Variable x:TypeArguments="ui:GenericValue" Name="vLastName" />
+                              </Sequence.Variables>
+                              <Assign sap2010:WorkflowViewState.IdRef="Assign_16">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Int32">[counter]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Int32">[vCounter+2]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign sap2010:WorkflowViewState.IdRef="Assign_17">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="ui:GenericValue">[vLastName]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="ui:GenericValue">[vname.Split(" "c).Last()]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <If Condition="[vname.Contains(&quot;.&quot;)]" sap2010:WorkflowViewState.IdRef="If_1">
+                                <If.Then>
+                                  <Assign sap2010:WorkflowViewState.IdRef="Assign_18">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="ui:GenericValue">[vfirstName]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="ui:GenericValue">[vname.Split("."c).First()]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                </If.Then>
+                                <If.Else>
+                                  <Assign sap2010:WorkflowViewState.IdRef="Assign_19">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="ui:GenericValue">[vfirstName]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="ui:GenericValue">[vname.Split(" "c).First()]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                </If.Else>
+                              </If>
+                              <ui:WriteCell Cell="[&quot;A&quot;+counter.ToString]" DisplayName="Write Cell" sap2010:WorkflowViewState.IdRef="WriteCell_1" SheetName="Sheet1" Text="[vfirstName]" WorkbookPath="Salesforce.xlsm" />
+                              <ui:WriteCell Cell="[&quot;B&quot;+counter.ToString]" DisplayName="Write Cell" sap2010:WorkflowViewState.IdRef="WriteCell_2" SheetName="Sheet1" Text="[vLastName]" WorkbookPath="Salesforce.xlsm" />
+                              <ui:WriteCell Cell="[&quot;C&quot;+counter.ToString]" DisplayName="Write Cell" sap2010:WorkflowViewState.IdRef="WriteCell_9" SheetName="Sheet1" Text="[vCompany]" WorkbookPath="Salesforce.xlsm" />
+                              <ui:WriteCell Cell="[&quot;D&quot;+counter.ToString]" DisplayName="Write Cell" sap2010:WorkflowViewState.IdRef="WriteCell_3" SheetName="Sheet1" Text="[vPosition]" WorkbookPath="Salesforce.xlsm" />
+                              <ui:WriteCell Cell="[&quot;E&quot;+counter.ToString]" DisplayName="Write Cell" sap2010:WorkflowViewState.IdRef="WriteCell_4" SheetName="Sheet1" Text="[vEmail]" WorkbookPath="Salesforce.xlsm" />
+                              <ui:WriteCell Cell="[&quot;F&quot;+counter.ToString]" DisplayName="Write Cell" sap2010:WorkflowViewState.IdRef="WriteCell_5" SheetName="Sheet1" Text="[vPhone]" WorkbookPath="Salesforce.xlsm" />
+                              <ui:WriteCell Cell="[&quot;G&quot;+counter.ToString]" DisplayName="Write Cell" sap2010:WorkflowViewState.IdRef="WriteCell_6" SheetName="Sheet1" Text="[vCompanyWebsite]" WorkbookPath="Salesforce.xlsm" />
+                              <ui:WriteCell Cell="[&quot;H&quot;+counter.ToString]" DisplayName="Write Cell" sap2010:WorkflowViewState.IdRef="WriteCell_7" SheetName="Sheet1" Text="[vAddress]" WorkbookPath="Salesforce.xlsm" />
+                              <ui:WriteCell Cell="[&quot;I&quot;+counter.ToString]" DisplayName="Write Cell" sap2010:WorkflowViewState.IdRef="WriteCell_8" SheetName="Sheet1" Text="[vAddress2]" WorkbookPath="Salesforce.xlsm" />
+                            </Sequence>
+                            <FlowStep.Next>
+                              <FlowDecision x:Name="__ReferenceID2" Condition="[vCounter&gt;0]" DisplayName="Check EOF" sap2010:WorkflowViewState.IdRef="FlowDecision_5">
+                                <FlowDecision.True>
+                                  <FlowStep x:Name="__ReferenceID10" sap2010:WorkflowViewState.IdRef="FlowStep_12">
+                                    <Sequence sap2010:WorkflowViewState.IdRef="Sequence_23">
+                                      <Assign sap2010:WorkflowViewState.IdRef="Assign_8">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:String">[vname]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:String">
+                                            <Literal x:TypeArguments="x:String" Value="" />
+                                          </InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                      <Assign sap2010:WorkflowViewState.IdRef="Assign_9">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:String">[vCompany]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:String">[""]</InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                      <Assign sap2010:WorkflowViewState.IdRef="Assign_10">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:String">[vCompanyWebsite]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:String">[""]</InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                      <Assign sap2010:WorkflowViewState.IdRef="Assign_11">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:String">[vEmail]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:String">[""]</InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                      <Assign sap2010:WorkflowViewState.IdRef="Assign_12">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:String">[vPhone]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:String">[""]</InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                      <Assign sap2010:WorkflowViewState.IdRef="Assign_13">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:String">[vPosition]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:String">[""]</InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                      <Assign sap2010:WorkflowViewState.IdRef="Assign_14">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:String">[vAddress]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:String">
+                                            <Literal x:TypeArguments="x:String" Value="" />
+                                          </InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                      <Assign sap2010:WorkflowViewState.IdRef="Assign_15">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:String">[vAddress2]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:String">
+                                            <Literal x:TypeArguments="x:String" Value="" />
+                                          </InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                    </Sequence>
+                                    <FlowStep.Next>
+                                      <x:Reference>__ReferenceID0</x:Reference>
+                                    </FlowStep.Next>
+                                  </FlowStep>
+                                </FlowDecision.True>
+                                <FlowDecision.False>
+                                  <FlowStep x:Name="__ReferenceID11" sap2010:WorkflowViewState.IdRef="FlowStep_13">
+                                    <Sequence DisplayName="Run Macros" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                                      <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send Hotkey" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_13" Key="r" KeyModifiers="Win" SendWindowMessages="False" SpecialKey="False">
+                                        <ui:SendHotkey.Target>
+                                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
+                                        </ui:SendHotkey.Target>
+                                      </ui:SendHotkey>
+                                      <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" Activate="True" ClickBeforeTyping="False" DelayMS="4000" DisplayName="Type Into 'explorer.exe  Run'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_20" SendWindowMessages="False" SimulateType="False" Text="C:\Users\Naveen\Documents\uipath projects\Buisness cards\Salesforce.xlsm[k(enter)]">
+                                        <ui:TypeInto.Target>
+                                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="c0573ef16c362a7a95a44dd7e45fb498" Selector="&lt;wnd app='explorer.exe' cls='#32770' title='Run' /&gt;&lt;wnd ctrlid='12298' /&gt;&lt;wnd ctrlid='1001' /&gt;" WaitForReady="INTERACTIVE" />
+                                        </ui:TypeInto.Target>
+                                      </ui:TypeInto>
+                                      <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" Activate="True" ClickBeforeTyping="False" DelayMS="3000" DisplayName="Send Hotkey 'NetUIHWND'" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_14" Key="pgdn" KeyModifiers="Ctrl" SendWindowMessages="False" SpecialKey="True">
+                                        <ui:SendHotkey.Target>
+                                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="dc81a65e6b29bc97fc7445105dc2d67b" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='Microsoft Excel - Salesforce.xlsm' /&gt;&lt;wnd omit:cls='NetUIHWND' idx='2' /&gt;" WaitForReady="INTERACTIVE" />
+                                        </ui:SendHotkey.Target>
+                                      </ui:SendHotkey>
+                                      <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" Activate="True" ClickBeforeTyping="False" DelayMS="3000" DisplayName="Send Hotkey 'NetUIHWND'" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_15" Key="pgup" KeyModifiers="Ctrl" SendWindowMessages="False" SpecialKey="True">
+                                        <ui:SendHotkey.Target>
+                                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="dc81a65e6b29bc97fc7445105dc2d67b" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='Microsoft Excel - Salesforce.xlsm' /&gt;&lt;wnd omit:cls='NetUIHWND' idx='2' /&gt;" WaitForReady="INTERACTIVE" />
+                                        </ui:SendHotkey.Target>
+                                      </ui:SendHotkey>
+                                      <ui:ClickOCRText ContinueOnError="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DelayBefore="2000" DisplayName="Click OCR Text 'client  Salesforce.xlsm'" sap2010:WorkflowViewState.IdRef="ClickOCRText_1" KeyModifiers="None" MouseButton="BTN_LEFT" Occurrence="1" SendWindowMessages="False" Text="Unique Company Names">
+                                        <ui:ClickOCRText.CursorPosition>
+                                          <ui:CursorPosition Position="Center">
+                                            <ui:CursorPosition.OffsetX>
+                                              <InArgument x:TypeArguments="x:Int32" />
+                                            </ui:CursorPosition.OffsetX>
+                                            <ui:CursorPosition.OffsetY>
+                                              <InArgument x:TypeArguments="x:Int32" />
+                                            </ui:CursorPosition.OffsetY>
+                                          </ui:CursorPosition>
+                                        </ui:ClickOCRText.CursorPosition>
+                                        <ui:ClickOCRText.OCREngine>
+                                          <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
+                                            <ActivityFunc.Argument>
+                                              <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                                            </ActivityFunc.Argument>
+                                            <ui:MicrosoftOCR FilterRegion="{x:Null}" Text="{x:Null}" DisplayName="Microsoft OCR" ExtractWords="True" sap2010:WorkflowViewState.IdRef="MicrosoftOCR_24" Image="[Image]" Language="en" Profile="Legacy" Scale="2" />
+                                          </ActivityFunc>
+                                        </ui:ClickOCRText.OCREngine>
+                                        <ui:ClickOCRText.Target>
+                                          <ui:Target Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="86102d5b37e0b5d38c5e95ba10b6edf5" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='Microsoft Excel - Salesforce.xlsm' /&gt;&lt;wnd cls='EXCEL7' title='Salesforce.xlsm' /&gt;&lt;ctrl name='Salesforce.xlsm' role='client' /&gt;" WaitForReady="INTERACTIVE">
+                                            <ui:Target.ClippingRegion>
+                                              <ui:Region Rectangle="1280, 49, 185, 52" />
+                                            </ui:Target.ClippingRegion>
+                                          </ui:Target>
+                                        </ui:ClickOCRText.Target>
+                                      </ui:ClickOCRText>
+                                      <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" Activate="True" ClickBeforeTyping="False" DelayMS="3000" DisplayName="Send Hotkey 'NetUIHWND'" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_16" Key="pgdn" KeyModifiers="Ctrl" SendWindowMessages="False" SpecialKey="True">
+                                        <ui:SendHotkey.Target>
+                                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="dc81a65e6b29bc97fc7445105dc2d67b" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='Microsoft Excel - Salesforce.xlsm' /&gt;&lt;wnd omit:cls='NetUIHWND' idx='2' /&gt;" WaitForReady="INTERACTIVE" />
+                                        </ui:SendHotkey.Target>
+                                      </ui:SendHotkey>
+                                      <ui:SendHotkey DelayBetweenKeys="{x:Null}" Activate="True" ClickBeforeTyping="False" DelayBefore="2000" DelayMS="2000" DisplayName="Send Hotkey 'NetUIHWND'" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_17" Key="s" KeyModifiers="Ctrl" SendWindowMessages="False" SpecialKey="False">
+                                        <ui:SendHotkey.Target>
+                                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="b8f1106ebcf53e3f83b94ef4b3e237fb" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='Microsoft Excel - Salesforce.xlsm' /&gt;&lt;wnd omit:cls='NetUIHWND' idx='2' /&gt;" WaitForReady="INTERACTIVE" />
+                                        </ui:SendHotkey.Target>
+                                      </ui:SendHotkey>
+                                      <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send Hotkey 'NetUIHWND'" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_18" Key="f4" KeyModifiers="Alt" SendWindowMessages="False" SpecialKey="True">
+                                        <ui:SendHotkey.Target>
+                                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="b8f1106ebcf53e3f83b94ef4b3e237fb" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='Microsoft Excel - Salesforce.xlsm' /&gt;&lt;wnd omit:cls='NetUIHWND' idx='2' /&gt;" WaitForReady="INTERACTIVE" />
+                                        </ui:SendHotkey.Target>
+                                      </ui:SendHotkey>
+                                    </Sequence>
+                                    <FlowStep.Next>
+                                      <FlowStep x:Name="__ReferenceID13" sap2010:WorkflowViewState.IdRef="FlowStep_15">
+                                        <Sequence DisplayName="Login to Salesforce / Add Accounts" sap2010:WorkflowViewState.IdRef="Sequence_29">
+                                          <ui:OpenBrowser UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Open Browser" Hidden="False" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" NewSession="True" Private="False" Url="https://login.salesforce.com/">
+                                            <ui:OpenBrowser.Body>
+                                              <ActivityAction x:TypeArguments="x:Object">
+                                                <ActivityAction.Argument>
+                                                  <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                                                </ActivityAction.Argument>
+                                                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_28">
+                                                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_27">
+                                                    <Sequence.Variables>
+                                                      <Variable x:TypeArguments="x:String" Default="Uipathproj1" Name="secString" />
+                                                    </Sequence.Variables>
+                                                    <ui:TypeInto DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DelayBefore="1500" DisplayName="Type Into 'INPUT  username'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_21" SendWindowMessages="False" SimulateType="False" Text="vishnu.charan93-pgwt@force.com">
+                                                      <ui:TypeInto.Target>
+                                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="5d301209e10f368ee1b1c497db6cfaa5" Selector="&lt;webctrl id='username' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
+                                                      </ui:TypeInto.Target>
+                                                    </ui:TypeInto>
+                                                    <ui:TypeInto DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DelayBefore="500" DisplayName="Type Into 'INPUT  password'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_22" SendWindowMessages="False" SimulateType="False" Text="[secString]">
+                                                      <ui:TypeInto.Target>
+                                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="0b8dca970a8aea25aa1ece9bbb76a53e" Selector="&lt;webctrl id='password' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
+                                                      </ui:TypeInto.Target>
+                                                    </ui:TypeInto>
+                                                    <ui:Click DelayBefore="{x:Null}" ClickType="CLICK_SINGLE" DelayMS="2000" DisplayName="Click 'INPUT  Login'" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                                                      <ui:Click.CursorPosition>
+                                                        <ui:CursorPosition Position="Center">
+                                                          <ui:CursorPosition.OffsetX>
+                                                            <InArgument x:TypeArguments="x:Int32" />
+                                                          </ui:CursorPosition.OffsetX>
+                                                          <ui:CursorPosition.OffsetY>
+                                                            <InArgument x:TypeArguments="x:Int32" />
+                                                          </ui:CursorPosition.OffsetY>
+                                                        </ui:CursorPosition>
+                                                      </ui:Click.CursorPosition>
+                                                      <ui:Click.Target>
+                                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="c63f668fb1ee3df8d67fabae0b1d4d9e" Selector="&lt;webctrl id='Login' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
+                                                      </ui:Click.Target>
+                                                    </ui:Click>
+                                                    <ui:WithWorkbook Password="{x:Null}" Workbook="{x:Null}" DisplayName="With workbook" sap2010:WorkflowViewState.IdRef="WithWorkbook_1" UseExcelApplication="False" WorkbookPath="Salesforce.xlsm">
+                                                      <ui:WithWorkbook.Body>
+                                                        <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_31">
+                                                          <Sequence.Variables>
+                                                            <Variable x:TypeArguments="sd1:DataTable" Name="operationsData" />
+                                                            <Variable x:TypeArguments="sd1:DataTable" Name="extractDT" />
+                                                            <Variable x:TypeArguments="sd1:DataTable" Name="dtable" />
+                                                          </Sequence.Variables>
+                                                          <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[dtable]" DisplayName="Read range" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Sheet2" WorkbookPath="Salesforce.xlsm" />
+                                                          <ui:Click DelayBefore="{x:Null}" ClickType="CLICK_SINGLE" DelayMS="1500" DisplayName="Click 'LI  Account_Tab'" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                                                            <ui:Click.CursorPosition>
+                                                              <ui:CursorPosition Position="Center">
+                                                                <ui:CursorPosition.OffsetX>
+                                                                  <InArgument x:TypeArguments="x:Int32" />
+                                                                </ui:CursorPosition.OffsetX>
+                                                                <ui:CursorPosition.OffsetY>
+                                                                  <InArgument x:TypeArguments="x:Int32" />
+                                                                </ui:CursorPosition.OffsetY>
+                                                              </ui:CursorPosition>
+                                                            </ui:Click.CursorPosition>
+                                                            <ui:Click.Target>
+                                                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="5d357b3bd43cecde367afd0c032398a7" Selector="&lt;webctrl id='Account_Tab' tag='LI' /&gt;" WaitForReady="INTERACTIVE" />
+                                                            </ui:Click.Target>
+                                                          </ui:Click>
+                                                          <ui:Click DelayBefore="{x:Null}" ClickType="CLICK_SINGLE" DelayMS="3000" DisplayName="Click 'INPUT'" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                                                            <ui:Click.CursorPosition>
+                                                              <ui:CursorPosition Position="Center">
+                                                                <ui:CursorPosition.OffsetX>
+                                                                  <InArgument x:TypeArguments="x:Int32" />
+                                                                </ui:CursorPosition.OffsetX>
+                                                                <ui:CursorPosition.OffsetY>
+                                                                  <InArgument x:TypeArguments="x:Int32" />
+                                                                </ui:CursorPosition.OffsetY>
+                                                              </ui:CursorPosition>
+                                                            </ui:Click.CursorPosition>
+                                                            <ui:Click.Target>
+                                                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="3b9c9c7f513a9a344df326c370b8058f" Selector="&lt;webctrl name='new' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
+                                                            </ui:Click.Target>
+                                                          </ui:Click>
+                                                          <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[dtable]" DisplayName="For Each Row" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+                                                            <ui:ForEachRow.Body>
+                                                              <ActivityAction x:TypeArguments="sd1:DataRow">
+                                                                <ActivityAction.Argument>
+                                                                  <DelegateInArgument x:TypeArguments="sd1:DataRow" Name="row" />
+                                                                </ActivityAction.Argument>
+                                                                <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_30">
+                                                                  <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type Into 'INPUT  acc2'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_23" SendWindowMessages="False" SimulateType="False" Text="[row(&quot;Company Name&quot;).ToString]">
+                                                                    <ui:TypeInto.Target>
+                                                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="cdad1c2b8bbb851f69838a501b8caeeb" Selector="&lt;webctrl id='acc2' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
+                                                                    </ui:TypeInto.Target>
+                                                                  </ui:TypeInto>
+                                                                  <ui:Click DelayBefore="{x:Null}" ClickType="CLICK_SINGLE" DelayMS="2500" DisplayName="Click 'INPUT'" sap2010:WorkflowViewState.IdRef="Click_4" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                                                                    <ui:Click.CursorPosition>
+                                                                      <ui:CursorPosition Position="Center">
+                                                                        <ui:CursorPosition.OffsetX>
+                                                                          <InArgument x:TypeArguments="x:Int32" />
+                                                                        </ui:CursorPosition.OffsetX>
+                                                                        <ui:CursorPosition.OffsetY>
+                                                                          <InArgument x:TypeArguments="x:Int32" />
+                                                                        </ui:CursorPosition.OffsetY>
+                                                                      </ui:CursorPosition>
+                                                                    </ui:Click.CursorPosition>
+                                                                    <ui:Click.Target>
+                                                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="9791424448873b80467a10716c1ca795" Selector="&lt;webctrl name='save_new' parentid='topButtonRow' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
+                                                                    </ui:Click.Target>
+                                                                  </ui:Click>
+                                                                </Sequence>
+                                                              </ActivityAction>
+                                                            </ui:ForEachRow.Body>
+                                                          </ui:ForEachRow>
+                                                        </Sequence>
+                                                      </ui:WithWorkbook.Body>
+                                                    </ui:WithWorkbook>
+                                                  </Sequence>
+                                                </Sequence>
+                                              </ActivityAction>
+                                            </ui:OpenBrowser.Body>
+                                          </ui:OpenBrowser>
+                                        </Sequence>
+                                        <FlowStep.Next>
+                                          <FlowStep x:Name="__ReferenceID14" sap2010:WorkflowViewState.IdRef="FlowStep_16">
+                                            <Sequence DisplayName="Add Contacts to Respetive Acounts" sap2010:WorkflowViewState.IdRef="Sequence_35">
+                                              <ui:WithWorkbook Password="{x:Null}" Workbook="{x:Null}" DisplayName="With workbook" sap2010:WorkflowViewState.IdRef="WithWorkbook_2" UseExcelApplication="False" WorkbookPath="Salesforce.xlsm">
+                                                <ui:WithWorkbook.Body>
+                                                  <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_34">
+                                                    <Sequence.Variables>
+                                                      <Variable x:TypeArguments="sd1:DataTable" Name="operationsData" />
+                                                      <Variable x:TypeArguments="sd1:DataTable" Name="extractDT" />
+                                                      <Variable x:TypeArguments="sd1:DataTable" Name="dtable" />
+                                                      <Variable x:TypeArguments="sd1:DataTable" Name="dtable2" />
+                                                    </Sequence.Variables>
+                                                    <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[dtable2]" DisplayName="Read range" sap2010:WorkflowViewState.IdRef="ReadRange_2" SheetName="Sheet1" WorkbookPath="Salesforce.xlsm" />
+                                                    <ui:Click DelayBefore="{x:Null}" ClickType="CLICK_SINGLE" DelayMS="2500" DisplayName="Click 'LI  Account_Tab'" sap2010:WorkflowViewState.IdRef="Click_15" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                                                      <ui:Click.CursorPosition>
+                                                        <ui:CursorPosition Position="Center">
+                                                          <ui:CursorPosition.OffsetX>
+                                                            <InArgument x:TypeArguments="x:Int32" />
+                                                          </ui:CursorPosition.OffsetX>
+                                                          <ui:CursorPosition.OffsetY>
+                                                            <InArgument x:TypeArguments="x:Int32" />
+                                                          </ui:CursorPosition.OffsetY>
+                                                        </ui:CursorPosition>
+                                                      </ui:Click.CursorPosition>
+                                                      <ui:Click.Target>
+                                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="82f99be174572be49ef8256e5ec29c06" Selector="&lt;html title='Account Edit: New Account ~ Salesforce - Professional Edition' /&gt;&lt;webctrl id='Contact_Tab' tag='LI' /&gt;" WaitForReady="INTERACTIVE" />
+                                                      </ui:Click.Target>
+                                                    </ui:Click>
+                                                    <ui:Click DelayBefore="{x:Null}" ClickType="CLICK_SINGLE" DelayMS="2500" DisplayName="Click 'LI  Contact_Tab'" sap2010:WorkflowViewState.IdRef="Click_6" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                                                      <ui:Click.CursorPosition>
+                                                        <ui:CursorPosition Position="Center">
+                                                          <ui:CursorPosition.OffsetX>
+                                                            <InArgument x:TypeArguments="x:Int32" />
+                                                          </ui:CursorPosition.OffsetX>
+                                                          <ui:CursorPosition.OffsetY>
+                                                            <InArgument x:TypeArguments="x:Int32" />
+                                                          </ui:CursorPosition.OffsetY>
+                                                        </ui:CursorPosition>
+                                                      </ui:Click.CursorPosition>
+                                                      <ui:Click.Target>
+                                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="93d490dd4def84043bffac8fe313227f" Selector="&lt;html title='Contacts: Home ~ Salesforce - Professional Edition' /&gt;&lt;webctrl name='new' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
+                                                      </ui:Click.Target>
+                                                    </ui:Click>
+                                                    <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[dtable2]" DisplayName="For Each Row" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
+                                                      <ui:ForEachRow.Body>
+                                                        <ActivityAction x:TypeArguments="sd1:DataRow">
+                                                          <ActivityAction.Argument>
+                                                            <DelegateInArgument x:TypeArguments="sd1:DataRow" Name="row" />
+                                                          </ActivityAction.Argument>
+                                                          <Sequence sap2010:WorkflowViewState.IdRef="Sequence_33">
+                                                            <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_32">
+                                                              <Sequence.Variables>
+                                                                <Variable x:TypeArguments="x:String" Name="varSelector" />
+                                                              </Sequence.Variables>
+                                                              <ui:CommentOut DisplayName="Comment Out" sap2010:WorkflowViewState.IdRef="CommentOut_4">
+                                                                <ui:CommentOut.Body>
+                                                                  <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_40">
+                                                                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" Buttons="Ok" DisplayName="Message Box" sap2010:WorkflowViewState.IdRef="MessageBox_10" Text="[row(&quot;Last Name &quot;).ToString+&quot;,&quot;+row(&quot;First Name&quot;).ToString+&quot;,&quot;]" TopMost="True" />
+                                                                  </Sequence>
+                                                                </ui:CommentOut.Body>
+                                                              </ui:CommentOut>
+                                                              <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" ContinueOnError="True" DisplayName="Type Into 'INPUT  acc2'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_25" SendWindowMessages="False" SimulateType="False" Text="[row(&quot;First Name&quot;).ToString]">
+                                                                <ui:TypeInto.Target>
+                                                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="74037122b88fca871673748f56a7a41a" Selector="&lt;html title='Contact Edit: New Contact ~ Salesforce - Professional Edition' /&gt;&lt;webctrl id='name_firstcon2' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
+                                                                </ui:TypeInto.Target>
+                                                              </ui:TypeInto>
+                                                              <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type Into 'INPUT  acc2'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_24" SendWindowMessages="False" SimulateType="False" Text="[row(&quot;Last Name &quot;).ToString]">
+                                                                <ui:TypeInto.Target>
+                                                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="9948f046722fd0e610c04df3732b2f4b" Selector="&lt;html title='Contact Edit: New Contact ~ Salesforce - Professional Edition' /&gt;&lt;webctrl id='name_lastcon2' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
+                                                                </ui:TypeInto.Target>
+                                                              </ui:TypeInto>
+                                                              <ui:Click DelayBefore="{x:Null}" ClickType="CLICK_SINGLE" DelayMS="3500" DisplayName="Click 'IMG  https://na59.sales...'" sap2010:WorkflowViewState.IdRef="Click_7" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                                                                <ui:Click.CursorPosition>
+                                                                  <ui:CursorPosition Position="Center">
+                                                                    <ui:CursorPosition.OffsetX>
+                                                                      <InArgument x:TypeArguments="x:Int32" />
+                                                                    </ui:CursorPosition.OffsetX>
+                                                                    <ui:CursorPosition.OffsetY>
+                                                                      <InArgument x:TypeArguments="x:Int32" />
+                                                                    </ui:CursorPosition.OffsetY>
+                                                                  </ui:CursorPosition>
+                                                                </ui:Click.CursorPosition>
+                                                                <ui:Click.Target>
+                                                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e4184dc7919f6378117e991fea934dac" Selector="&lt;html title='Contact Edit: New Contact ~ Salesforce - Professional Edition' /&gt;&lt;webctrl parentid='con4_lkwgt' tag='IMG' /&gt;" WaitForReady="INTERACTIVE" />
+                                                                </ui:Click.Target>
+                                                              </ui:Click>
+                                                              <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type Into 'INPUT  lksrch'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_27" SendWindowMessages="False" SimulateType="False" Text="[row(&quot;Company Name&quot;).ToString]">
+                                                                <ui:TypeInto.Target>
+                                                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="8b41a49f3a7b1131e8a6a78781da4a36" Selector="&lt;html htmlwindowname='lookup' title='Search ~ Salesforce - Professional Edition' /&gt;&lt;webctrl id='lksrch' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
+                                                                </ui:TypeInto.Target>
+                                                              </ui:TypeInto>
+                                                              <ui:Click DelayBefore="{x:Null}" ClickType="CLICK_SINGLE" DelayMS="3000" DisplayName="Click 'INPUT'" sap2010:WorkflowViewState.IdRef="Click_8" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                                                                <ui:Click.CursorPosition>
+                                                                  <ui:CursorPosition Position="Center">
+                                                                    <ui:CursorPosition.OffsetX>
+                                                                      <InArgument x:TypeArguments="x:Int32" />
+                                                                    </ui:CursorPosition.OffsetX>
+                                                                    <ui:CursorPosition.OffsetY>
+                                                                      <InArgument x:TypeArguments="x:Int32" />
+                                                                    </ui:CursorPosition.OffsetY>
+                                                                  </ui:CursorPosition>
+                                                                </ui:Click.CursorPosition>
+                                                                <ui:Click.Target>
+                                                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="cf6d26d6934b985aae7caa70dc75b485" Selector="&lt;html htmlwindowname='lookup' title='Search ~ Salesforce - Professional Edition' /&gt;&lt;webctrl name='go' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
+                                                                </ui:Click.Target>
+                                                              </ui:Click>
+                                                              <Assign sap2010:WorkflowViewState.IdRef="Assign_20">
+                                                                <Assign.To>
+                                                                  <OutArgument x:TypeArguments="x:String">[varSelector]</OutArgument>
+                                                                </Assign.To>
+                                                                <Assign.Value>
+                                                                  <InArgument x:TypeArguments="x:String">["&lt;html htmlwindowname='lookup' title='Search ~ Salesforce - Professional Edition' /&gt;&lt;webctrl aaname='"+row("Company Name").ToString+"' parentid='Account_body' tag='A' /&gt;"]</InArgument>
+                                                                </Assign.Value>
+                                                              </Assign>
+                                                              <ui:Click DelayBefore="{x:Null}" ClickType="CLICK_SINGLE" DelayMS="1500" DisplayName="Click 'A '" sap2010:WorkflowViewState.IdRef="Click_9" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                                                                <ui:Click.CursorPosition>
+                                                                  <ui:CursorPosition Position="Center">
+                                                                    <ui:CursorPosition.OffsetX>
+                                                                      <InArgument x:TypeArguments="x:Int32" />
+                                                                    </ui:CursorPosition.OffsetX>
+                                                                    <ui:CursorPosition.OffsetY>
+                                                                      <InArgument x:TypeArguments="x:Int32" />
+                                                                    </ui:CursorPosition.OffsetY>
+                                                                  </ui:CursorPosition>
+                                                                </ui:Click.CursorPosition>
+                                                                <ui:Click.Target>
+                                                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="bdb075ee1b2d503d5afa3b2aefe5dcd3" Selector="[varSelector]" WaitForReady="INTERACTIVE" />
+                                                                </ui:Click.Target>
+                                                              </ui:Click>
+                                                              <ui:TypeInto DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" ContinueOnError="True" DelayBefore="1000" DisplayName="Type Into 'INPUT  acc2'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_28" SendWindowMessages="False" SimulateType="False" Text="[row(&quot;Position&quot;).ToString]">
+                                                                <ui:TypeInto.Target>
+                                                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="76d4ba8bafc765d1eb1044d4611f11ab" Selector="&lt;html title='Contact Edit: New Contact ~ Salesforce - Professional Edition' /&gt;&lt;webctrl id='con5' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
+                                                                </ui:TypeInto.Target>
+                                                              </ui:TypeInto>
+                                                              <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" ContinueOnError="True" DisplayName="Type Into 'INPUT  acc2'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_29" SendWindowMessages="False" SimulateType="False" Text="[row(&quot;Email&quot;).ToString]">
+                                                                <ui:TypeInto.Target>
+                                                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="34865375ea9136adf64e71104fbdf096" Selector="&lt;html title='Contact Edit: New Contact ~ Salesforce - Professional Edition' /&gt;&lt;webctrl id='con15' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
+                                                                </ui:TypeInto.Target>
+                                                              </ui:TypeInto>
+                                                              <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" ContinueOnError="True" DisplayName="Type Into 'INPUT  acc2'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_30" SendWindowMessages="False" SimulateType="False" Text="[row(&quot;Phone no&quot;).ToString]">
+                                                                <ui:TypeInto.Target>
+                                                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="04d49c65526af8a0a1f2be536a9fb165" Selector="&lt;html title='Contact Edit: New Contact ~ Salesforce - Professional Edition' /&gt;&lt;webctrl id='con10' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
+                                                                </ui:TypeInto.Target>
+                                                              </ui:TypeInto>
+                                                              <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'TD'" sap2010:WorkflowViewState.IdRef="Click_10" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                                                                <ui:Click.CursorPosition>
+                                                                  <ui:CursorPosition Position="Center">
+                                                                    <ui:CursorPosition.OffsetX>
+                                                                      <InArgument x:TypeArguments="x:Int32" />
+                                                                    </ui:CursorPosition.OffsetX>
+                                                                    <ui:CursorPosition.OffsetY>
+                                                                      <InArgument x:TypeArguments="x:Int32" />
+                                                                    </ui:CursorPosition.OffsetY>
+                                                                  </ui:CursorPosition>
+                                                                </ui:Click.CursorPosition>
+                                                                <ui:Click.Target>
+                                                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="bf08dbe52dc8dfe769e4156572ae4cef" Selector="&lt;html title='Contact Edit: New Contact ~ Salesforce - Professional Edition' /&gt;&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;table' idx='1' parentid='ep' tag='TABLE' /&gt;&lt;webctrl isleaf='1' tableCol='3' tableRow='6' tag='TD' /&gt;" WaitForReady="INTERACTIVE" />
+                                                                </ui:Click.Target>
+                                                              </ui:Click>
+                                                              <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send Hotkey 'TD'" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_19" Key="pgdn" KeyModifiers="None" SendWindowMessages="False" SpecialKey="True">
+                                                                <ui:SendHotkey.Target>
+                                                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e5fe945a7a2da9ffd4261c6cd9c859fc" Selector="&lt;html title='Contact Edit: New Contact ~ Salesforce - Professional Edition' /&gt;&lt;webctrl omit:css-selector='body&amp;gt;div&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;table' idx='1' omit:parentid='ep' tag='TABLE' /&gt;&lt;webctrl omit:isleaf='1' omit:tableCol='3' omit:tableRow='8' tag='TD' /&gt;" WaitForReady="INTERACTIVE" />
+                                                                </ui:SendHotkey.Target>
+                                                              </ui:SendHotkey>
+                                                              <If Condition="[row(&quot;Address Line 1&quot;).ToString is nothing]" sap2010:WorkflowViewState.IdRef="If_2">
+                                                                <If.Else>
+                                                                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_39">
+                                                                    <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" ContinueOnError="True" DisplayName="Type Into 'INPUT  acc2'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_31" SendWindowMessages="False" SimulateType="False" Text="[row(&quot;Address Line 1&quot;).ToString]">
+                                                                      <ui:TypeInto.Target>
+                                                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="172819cd5b0a6e23a6e932e58e451e3e" Selector="&lt;html title='Contact Edit: New Contact ~ Salesforce - Professional Edition' /&gt;&lt;webctrl id='con19street' tag='TEXTAREA' /&gt;" WaitForReady="INTERACTIVE" />
+                                                                      </ui:TypeInto.Target>
+                                                                    </ui:TypeInto>
+                                                                    <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" ContinueOnError="True" DisplayName="Type Into 'INPUT  acc2'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_33" SendWindowMessages="False" SimulateType="False" Text="[row(&quot;Address Line 2&quot;).ToString.Split(&quot; &quot;c).Skip(1).FirstOrDefault()]">
+                                                                      <ui:TypeInto.Target>
+                                                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="6e393e709fbb8ce30925de56ac2a273e" Selector="&lt;html title='Contact Edit: New Contact ~ Salesforce - Professional Edition' /&gt;&lt;webctrl id='con19state' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
+                                                                      </ui:TypeInto.Target>
+                                                                    </ui:TypeInto>
+                                                                    <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" ContinueOnError="True" DisplayName="Type Into 'INPUT  acc2'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_32" SendWindowMessages="False" SimulateType="False" Text="[row(&quot;Address Line 2&quot;).ToString.Split(&quot;,&quot;c).First()]">
+                                                                      <ui:TypeInto.Target>
+                                                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e5632522d0732ed16976d06ea7efc18b" Selector="&lt;html title='Contact Edit: New Contact ~ Salesforce - Professional Edition' /&gt;&lt;webctrl id='con19city' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
+                                                                      </ui:TypeInto.Target>
+                                                                    </ui:TypeInto>
+                                                                    <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" ContinueOnError="True" DisplayName="Type Into 'INPUT  acc2'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_34" SendWindowMessages="False" SimulateType="False" Text="[row(&quot;Address Line 2&quot;).ToString.Split(&quot; &quot;c).Last()]">
+                                                                      <ui:TypeInto.Target>
+                                                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="1693a8c0b986ef1e09d2a9dc0f578c5f" Selector="&lt;html title='Contact Edit: New Contact ~ Salesforce - Professional Edition' /&gt;&lt;webctrl id='con19zip' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
+                                                                      </ui:TypeInto.Target>
+                                                                    </ui:TypeInto>
+                                                                  </Sequence>
+                                                                </If.Else>
+                                                              </If>
+                                                              <ui:Click DelayBefore="{x:Null}" ClickType="CLICK_SINGLE" DelayMS="2500" DisplayName="Click 'push button'" sap2010:WorkflowViewState.IdRef="Click_11" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                                                                <ui:Click.CursorPosition>
+                                                                  <ui:CursorPosition Position="Center">
+                                                                    <ui:CursorPosition.OffsetX>
+                                                                      <InArgument x:TypeArguments="x:Int32" />
+                                                                    </ui:CursorPosition.OffsetX>
+                                                                    <ui:CursorPosition.OffsetY>
+                                                                      <InArgument x:TypeArguments="x:Int32" />
+                                                                    </ui:CursorPosition.OffsetY>
+                                                                  </ui:CursorPosition>
+                                                                </ui:Click.CursorPosition>
+                                                                <ui:Click.Target>
+                                                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="365d1b533e6f978169359793b7fa046b" Selector="&lt;html title='Contact Edit: New Contact ~ Salesforce - Professional Edition' /&gt;&lt;webctrl name='save_new' parentid='bottomButtonRow' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
+                                                                </ui:Click.Target>
+                                                              </ui:Click>
+                                                            </Sequence>
+                                                          </Sequence>
+                                                        </ActivityAction>
+                                                      </ui:ForEachRow.Body>
+                                                    </ui:ForEachRow>
+                                                    <ui:Click DelayBefore="{x:Null}" ClickType="CLICK_SINGLE" DelayMS="6000" DisplayName="Click 'LI  Contact_Tab'" sap2010:WorkflowViewState.IdRef="Click_12" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                                                      <ui:Click.CursorPosition>
+                                                        <ui:CursorPosition Position="Center">
+                                                          <ui:CursorPosition.OffsetX>
+                                                            <InArgument x:TypeArguments="x:Int32" />
+                                                          </ui:CursorPosition.OffsetX>
+                                                          <ui:CursorPosition.OffsetY>
+                                                            <InArgument x:TypeArguments="x:Int32" />
+                                                          </ui:CursorPosition.OffsetY>
+                                                        </ui:CursorPosition>
+                                                      </ui:Click.CursorPosition>
+                                                      <ui:Click.Target>
+                                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="87c4d6b98049a5e76158724824e8fd08" Selector="&lt;html title='Contact Edit: New Contact ~ Salesforce - Professional Edition' /&gt;&lt;webctrl id='Contact_Tab' tag='LI' /&gt;" WaitForReady="INTERACTIVE" />
+                                                      </ui:Click.Target>
+                                                    </ui:Click>
+                                                  </Sequence>
+                                                </ui:WithWorkbook.Body>
+                                              </ui:WithWorkbook>
+                                            </Sequence>
+                                          </FlowStep>
+                                        </FlowStep.Next>
+                                      </FlowStep>
+                                    </FlowStep.Next>
+                                  </FlowStep>
+                                </FlowDecision.False>
+                              </FlowDecision>
+                            </FlowStep.Next>
+                          </FlowStep>
+                        </FlowSwitch.Default>
+                      </FlowSwitch>
+                    </FlowStep.Next>
+                  </FlowStep>
+                </FlowDecision.True>
+                <FlowDecision.False>
+                  <FlowDecision x:Name="__ReferenceID8" Condition="[outText.Contains(&quot;@dcorp.com&quot;)]" DisplayName="Check Company 2" sap2010:WorkflowViewState.IdRef="FlowDecision_3">
+                    <FlowDecision.True>
+                      <FlowStep x:Name="__ReferenceID6" sap2010:WorkflowViewState.IdRef="FlowStep_9">
+                        <Sequence DisplayName="Detail Bcard details using OCR" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                          <Sequence sap2010:WorkflowViewState.IdRef="Sequence_19">
+                            <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send Hotkey" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_2" Key="r" KeyModifiers="Win" SendWindowMessages="False" SpecialKey="False">
+                              <ui:SendHotkey.Target>
+                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
+                              </ui:SendHotkey.Target>
+                            </ui:SendHotkey>
+                            <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" Activate="True" ClickBeforeTyping="False" DelayMS="2000" DisplayName="Type Into 'Edit'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_2" SendWindowMessages="False" SimulateType="False" Text="[filelist.GetValue(vCounter).ToString+ &quot;[k(enter)]&quot;]">
+                              <ui:TypeInto.Target>
+                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="d55161dfa227e34a2bd67fd86eeb57e0" Selector="&lt;wnd app='explorer.exe' cls='#32770' title='Run' /&gt;&lt;wnd ctrlid='12298' /&gt;&lt;wnd ctrlid='1001' /&gt;" WaitForReady="INTERACTIVE" />
+                              </ui:TypeInto.Target>
+                            </ui:TypeInto>
+                            <ui:GetOCRText Text="{x:Null}" WordsInfo="{x:Null}" DisplayName="Get OCR Text 'client'" sap2010:WorkflowViewState.IdRef="GetOCRText_5">
+                              <ui:GetOCRText.OCREngine>
+                                <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
+                                  <ActivityFunc.Argument>
+                                    <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                                  </ActivityFunc.Argument>
+                                  <ui:MicrosoftOCR FilterRegion="{x:Null}" DisplayName="Microsoft OCR" ExtractWords="True" sap2010:WorkflowViewState.IdRef="MicrosoftOCR_9" Image="[Image]" Language="en" Profile="Legacy" Scale="1" Text="[vname]" />
+                                </ActivityFunc>
+                              </ui:GetOCRText.OCREngine>
+                              <ui:GetOCRText.Target>
+                                <ui:Target Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="2dc89df016f19aec291c77dcdebe297e" Selector="&lt;wnd app='rundll32.exe' cls='Photo_Lightweight_Viewer' omit:title='BusinessCard3.png - Windows Photo Viewer' /&gt;&lt;wnd cls='Photos_PhotoCanvas' /&gt;&lt;ctrl role='client' /&gt;" WaitForReady="INTERACTIVE">
+                                  <ui:Target.ClippingRegion>
+                                    <ui:Region Rectangle="626, 326, 278, 58" />
+                                  </ui:Target.ClippingRegion>
+                                </ui:Target>
+                              </ui:GetOCRText.Target>
+                            </ui:GetOCRText>
+                            <ui:GetOCRText Text="{x:Null}" WordsInfo="{x:Null}" DisplayName="Get OCR Text 'client'" sap2010:WorkflowViewState.IdRef="GetOCRText_6">
+                              <ui:GetOCRText.OCREngine>
+                                <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
+                                  <ActivityFunc.Argument>
+                                    <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                                  </ActivityFunc.Argument>
+                                  <ui:MicrosoftOCR FilterRegion="{x:Null}" DisplayName="Microsoft OCR" ExtractWords="True" sap2010:WorkflowViewState.IdRef="MicrosoftOCR_10" Image="[Image]" Language="en" Profile="Legacy" Scale="1" Text="[vPosition]" />
+                                </ActivityFunc>
+                              </ui:GetOCRText.OCREngine>
+                              <ui:GetOCRText.Target>
+                                <ui:Target Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="966c732d1d359951123d97b3b9107a7b" Selector="&lt;wnd app='rundll32.exe' cls='Photo_Lightweight_Viewer' omit:title='BusinessCard3.png - Windows Photo Viewer' /&gt;&lt;wnd cls='Photos_PhotoCanvas' /&gt;&lt;ctrl role='client' /&gt;" WaitForReady="INTERACTIVE">
+                                  <ui:Target.ClippingRegion>
+                                    <ui:Region Rectangle="628, 381, 290, 56" />
+                                  </ui:Target.ClippingRegion>
+                                </ui:Target>
+                              </ui:GetOCRText.Target>
+                            </ui:GetOCRText>
+                            <ui:GetOCRText Text="{x:Null}" WordsInfo="{x:Null}" DisplayName="Get OCR Text 'client'" sap2010:WorkflowViewState.IdRef="GetOCRText_7">
+                              <ui:GetOCRText.OCREngine>
+                                <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
+                                  <ActivityFunc.Argument>
+                                    <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                                  </ActivityFunc.Argument>
+                                  <ui:MicrosoftOCR FilterRegion="{x:Null}" DisplayName="Microsoft OCR" ExtractWords="True" sap2010:WorkflowViewState.IdRef="MicrosoftOCR_11" Image="[Image]" Language="en" Profile="Legacy" Scale="1" Text="[vCompany]" />
+                                </ActivityFunc>
+                              </ui:GetOCRText.OCREngine>
+                              <ui:GetOCRText.Target>
+                                <ui:Target Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="1e90678f0a2fa71b691aeebc7ceec446" Selector="&lt;wnd app='rundll32.exe' cls='Photo_Lightweight_Viewer' omit:title='BusinessCard4.png - Windows Photo Viewer' /&gt;&lt;wnd cls='Photos_PhotoCanvas' /&gt;&lt;ctrl role='client' /&gt;" WaitForReady="INTERACTIVE">
+                                  <ui:Target.ClippingRegion>
+                                    <ui:Region Rectangle="576, 145, 352, 105" />
+                                  </ui:Target.ClippingRegion>
+                                </ui:Target>
+                              </ui:GetOCRText.Target>
+                            </ui:GetOCRText>
+                            <ui:GetOCRText Text="{x:Null}" WordsInfo="{x:Null}" DisplayName="Get OCR Text 'client'" sap2010:WorkflowViewState.IdRef="GetOCRText_8">
+                              <ui:GetOCRText.OCREngine>
+                                <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
+                                  <ActivityFunc.Argument>
+                                    <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                                  </ActivityFunc.Argument>
+                                  <ui:MicrosoftOCR FilterRegion="{x:Null}" DisplayName="Microsoft OCR" ExtractWords="True" sap2010:WorkflowViewState.IdRef="MicrosoftOCR_12" Image="[Image]" Language="en" Profile="Legacy" Scale="1" Text="[vPhone]" />
+                                </ActivityFunc>
+                              </ui:GetOCRText.OCREngine>
+                              <ui:GetOCRText.Target>
+                                <ui:Target Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="35c742c3ced2e249180e02564e4549aa" Selector="&lt;wnd app='rundll32.exe' cls='Photo_Lightweight_Viewer' omit:title='BusinessCard4.png - Windows Photo Viewer' /&gt;&lt;wnd cls='Photos_PhotoCanvas' /&gt;&lt;ctrl role='client' /&gt;" WaitForReady="INTERACTIVE">
+                                  <ui:Target.ClippingRegion>
+                                    <ui:Region Rectangle="608, 416, 320, 62" />
+                                  </ui:Target.ClippingRegion>
+                                </ui:Target>
+                              </ui:GetOCRText.Target>
+                            </ui:GetOCRText>
+                            <ui:GetOCRText Text="{x:Null}" WordsInfo="{x:Null}" DisplayName="Get OCR Text 'client'" sap2010:WorkflowViewState.IdRef="GetOCRText_9">
+                              <ui:GetOCRText.OCREngine>
+                                <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
+                                  <ActivityFunc.Argument>
+                                    <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                                  </ActivityFunc.Argument>
+                                  <ui:MicrosoftOCR FilterRegion="{x:Null}" DisplayName="Microsoft OCR" ExtractWords="True" sap2010:WorkflowViewState.IdRef="MicrosoftOCR_13" Image="[Image]" Language="en" Profile="Legacy" Scale="1" Text="[vEmail]" />
+                                </ActivityFunc>
+                              </ui:GetOCRText.OCREngine>
+                              <ui:GetOCRText.Target>
+                                <ui:Target Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="7bd5be6e5e20cf7fa58ff1ff302fa518" Selector="&lt;wnd app='rundll32.exe' cls='Photo_Lightweight_Viewer' omit:title='BusinessCard4.png - Windows Photo Viewer' /&gt;&lt;wnd cls='Photos_PhotoCanvas' /&gt;&lt;ctrl role='client' /&gt;" WaitForReady="INTERACTIVE">
+                                  <ui:Target.ClippingRegion>
+                                    <ui:Region Rectangle="596, 461, 336, 70" />
+                                  </ui:Target.ClippingRegion>
+                                </ui:Target>
+                              </ui:GetOCRText.Target>
+                            </ui:GetOCRText>
+                            <ui:GetOCRText Text="{x:Null}" WordsInfo="{x:Null}" DisplayName="Get OCR Text 'client'" sap2010:WorkflowViewState.IdRef="GetOCRText_10">
+                              <ui:GetOCRText.OCREngine>
+                                <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
+                                  <ActivityFunc.Argument>
+                                    <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                                  </ActivityFunc.Argument>
+                                  <ui:MicrosoftOCR FilterRegion="{x:Null}" DisplayName="Microsoft OCR" ExtractWords="True" sap2010:WorkflowViewState.IdRef="MicrosoftOCR_14" Image="[Image]" Language="en" Profile="Legacy" Scale="1" Text="[vCompanyWebsite]" />
+                                </ActivityFunc>
+                              </ui:GetOCRText.OCREngine>
+                              <ui:GetOCRText.Target>
+                                <ui:Target Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="06c3d68ef186267de47d127d1cd9ba38" Selector="&lt;wnd app='rundll32.exe' cls='Photo_Lightweight_Viewer' omit:title='BusinessCard4.png - Windows Photo Viewer' /&gt;&lt;wnd cls='Photos_PhotoCanvas' /&gt;&lt;ctrl role='client' /&gt;" WaitForReady="INTERACTIVE">
+                                  <ui:Target.ClippingRegion>
+                                    <ui:Region Rectangle="575, 236, 372, 66" />
+                                  </ui:Target.ClippingRegion>
+                                </ui:Target>
+                              </ui:GetOCRText.Target>
+                            </ui:GetOCRText>
+                            <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" Buttons="Ok" DisplayName="Message Box" sap2010:WorkflowViewState.IdRef="MessageBox_8" Text="[&quot;Name : &quot; + vname +  vbCrLf + &quot;Companny : &quot; + vCompany +  vbCrLf + &quot;Position : &quot; +  vPosition +  vbCrLf + &quot;Email : &quot; + vEmail +  vbCrLf +  &quot;Company Website : &quot; + vCompanyWebsite +  vbCrLf + &quot;Phone : &quot; +vphone]" TopMost="True" />
+                            <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send Hotkey 'rundll32.exe BusinessCa...'" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_5" Key="f4" KeyModifiers="Alt" SendWindowMessages="False" SpecialKey="True">
+                              <ui:SendHotkey.Target>
+                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="b1c77b293ae5cbec6416987712440f72" Selector="&lt;wnd app='rundll32.exe' cls='Photo_Lightweight_Viewer' omit:title='BusinessCard5.png - Windows Photo Viewer' /&gt;" WaitForReady="INTERACTIVE" />
+                              </ui:SendHotkey.Target>
+                            </ui:SendHotkey>
+                          </Sequence>
+                        </Sequence>
+                        <FlowStep.Next>
+                          <x:Reference>__ReferenceID1</x:Reference>
+                        </FlowStep.Next>
+                      </FlowStep>
+                    </FlowDecision.True>
+                    <FlowDecision.False>
+                      <FlowDecision x:Name="__ReferenceID9" Condition="[outText.Contains(&quot;@maplemaster.com&quot;)]" DisplayName="Check Company 3" sap2010:WorkflowViewState.IdRef="FlowDecision_2">
+                        <FlowDecision.True>
+                          <FlowStep x:Name="__ReferenceID7" sap2010:WorkflowViewState.IdRef="FlowStep_10">
+                            <Sequence DisplayName="Detail Bcard details using OCR" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                              <Sequence.Variables>
+                                <Variable x:TypeArguments="ui:Image" Name="outImage" />
+                              </Sequence.Variables>
+                              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_21">
+                                <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send Hotkey" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_3" Key="r" KeyModifiers="Win" SendWindowMessages="False" SpecialKey="False">
+                                  <ui:SendHotkey.Target>
+                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
+                                  </ui:SendHotkey.Target>
+                                </ui:SendHotkey>
+                                <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" Activate="True" ClickBeforeTyping="False" DelayMS="2000" DisplayName="Type Into 'Edit'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_3" SendWindowMessages="False" SimulateType="False" Text="[filelist.GetValue(vCounter).ToString+ &quot;[k(enter)]&quot;]">
+                                  <ui:TypeInto.Target>
+                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="d55161dfa227e34a2bd67fd86eeb57e0" Selector="&lt;wnd app='explorer.exe' cls='#32770' title='Run' /&gt;&lt;wnd ctrlid='12298' /&gt;&lt;wnd ctrlid='1001' /&gt;" WaitForReady="INTERACTIVE" />
+                                  </ui:TypeInto.Target>
+                                </ui:TypeInto>
+                                <ui:GetOCRText Text="{x:Null}" WordsInfo="{x:Null}" DisplayName="Get OCR Text 'client'" sap2010:WorkflowViewState.IdRef="GetOCRText_11">
+                                  <ui:GetOCRText.OCREngine>
+                                    <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
+                                      <ActivityFunc.Argument>
+                                        <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                                      </ActivityFunc.Argument>
+                                      <ui:MicrosoftOCR FilterRegion="{x:Null}" DisplayName="Microsoft OCR" ExtractWords="True" sap2010:WorkflowViewState.IdRef="MicrosoftOCR_15" Image="[Image]" Language="en" Profile="Legacy" Scale="1" Text="[vname]" />
+                                    </ActivityFunc>
+                                  </ui:GetOCRText.OCREngine>
+                                  <ui:GetOCRText.Target>
+                                    <ui:Target Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="75f5baa7659f9cc27d4dc17570424213" Selector="&lt;wnd app='rundll32.exe' cls='Photo_Lightweight_Viewer' omit:title='BusinessCard5.png - Windows Photo Viewer' /&gt;&lt;wnd cls='Photos_PhotoCanvas' /&gt;&lt;ctrl role='client' /&gt;" WaitForReady="INTERACTIVE">
+                                      <ui:Target.ClippingRegion>
+                                        <ui:Region Rectangle="228, 217, 560, 83" />
+                                      </ui:Target.ClippingRegion>
+                                    </ui:Target>
+                                  </ui:GetOCRText.Target>
+                                </ui:GetOCRText>
+                                <ui:GetOCRText Text="{x:Null}" WordsInfo="{x:Null}" DisplayName="Get OCR Text 'client'" sap2010:WorkflowViewState.IdRef="GetOCRText_12">
+                                  <ui:GetOCRText.OCREngine>
+                                    <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
+                                      <ActivityFunc.Argument>
+                                        <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                                      </ActivityFunc.Argument>
+                                      <ui:MicrosoftOCR FilterRegion="{x:Null}" DisplayName="Microsoft OCR" ExtractWords="True" sap2010:WorkflowViewState.IdRef="MicrosoftOCR_16" Image="[Image]" Language="en" Profile="Legacy" Scale="1" Text="[vPosition]" />
+                                    </ActivityFunc>
+                                  </ui:GetOCRText.OCREngine>
+                                  <ui:GetOCRText.Target>
+                                    <ui:Target Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="8be6ede1409826eda1aa72d34765d6f8" Selector="&lt;wnd app='rundll32.exe' cls='Photo_Lightweight_Viewer' omit:title='BusinessCard5.png - Windows Photo Viewer' /&gt;&lt;wnd cls='Photos_PhotoCanvas' /&gt;&lt;ctrl role='client' /&gt;" WaitForReady="INTERACTIVE">
+                                      <ui:Target.ClippingRegion>
+                                        <ui:Region Rectangle="231, 285, 508, 87" />
+                                      </ui:Target.ClippingRegion>
+                                    </ui:Target>
+                                  </ui:GetOCRText.Target>
+                                </ui:GetOCRText>
+                                <ui:GetOCRText Text="{x:Null}" WordsInfo="{x:Null}" DisplayName="Get OCR Text 'client'" sap2010:WorkflowViewState.IdRef="GetOCRText_13">
+                                  <ui:GetOCRText.OCREngine>
+                                    <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
+                                      <ActivityFunc.Argument>
+                                        <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                                      </ActivityFunc.Argument>
+                                      <ui:MicrosoftOCR FilterRegion="{x:Null}" DisplayName="Microsoft OCR" ExtractWords="True" sap2010:WorkflowViewState.IdRef="MicrosoftOCR_17" Image="[Image]" Language="en" Profile="Legacy" Scale="1" Text="[vCompany]" />
+                                    </ActivityFunc>
+                                  </ui:GetOCRText.OCREngine>
+                                  <ui:GetOCRText.Target>
+                                    <ui:Target Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="d8029b2f2d95c18e40fa18cf4e7b2a71" Selector="&lt;wnd app='rundll32.exe' cls='Photo_Lightweight_Viewer' omit:title='BusinessCard5.png - Windows Photo Viewer' /&gt;&lt;wnd cls='Photos_PhotoCanvas' /&gt;&lt;ctrl role='client' /&gt;" WaitForReady="INTERACTIVE">
+                                      <ui:Target.ClippingRegion>
+                                        <ui:Region Rectangle="236, 40, 523, 114" />
+                                      </ui:Target.ClippingRegion>
+                                    </ui:Target>
+                                  </ui:GetOCRText.Target>
+                                </ui:GetOCRText>
+                                <ui:GetOCRText Text="{x:Null}" WordsInfo="{x:Null}" DisplayName="Get OCR Text 'client'" sap2010:WorkflowViewState.IdRef="GetOCRText_14">
+                                  <ui:GetOCRText.OCREngine>
+                                    <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
+                                      <ActivityFunc.Argument>
+                                        <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                                      </ActivityFunc.Argument>
+                                      <ui:MicrosoftOCR FilterRegion="{x:Null}" DisplayName="Microsoft OCR" ExtractWords="True" sap2010:WorkflowViewState.IdRef="MicrosoftOCR_18" Image="[Image]" Language="en" Profile="Legacy" Scale="1" Text="[vEmail]" />
+                                    </ActivityFunc>
+                                  </ui:GetOCRText.OCREngine>
+                                  <ui:GetOCRText.Target>
+                                    <ui:Target Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="c1303021044a776ae6c92a5976c4ab8b" Selector="&lt;wnd app='rundll32.exe' cls='Photo_Lightweight_Viewer' omit:title='BusinessCard5.png - Windows Photo Viewer' /&gt;&lt;wnd cls='Photos_PhotoCanvas' /&gt;&lt;ctrl role='client' /&gt;" WaitForReady="INTERACTIVE">
+                                      <ui:Target.ClippingRegion>
+                                        <ui:Region Rectangle="228, 627, 760, 63" />
+                                      </ui:Target.ClippingRegion>
+                                    </ui:Target>
+                                  </ui:GetOCRText.Target>
+                                </ui:GetOCRText>
+                                <ui:GetOCRText Text="{x:Null}" WordsInfo="{x:Null}" DisplayName="Get OCR Text 'client'" sap2010:WorkflowViewState.IdRef="GetOCRText_15">
+                                  <ui:GetOCRText.OCREngine>
+                                    <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
+                                      <ActivityFunc.Argument>
+                                        <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                                      </ActivityFunc.Argument>
+                                      <ui:MicrosoftOCR FilterRegion="{x:Null}" DisplayName="Microsoft OCR" ExtractWords="True" sap2010:WorkflowViewState.IdRef="MicrosoftOCR_19" Image="[Image]" Language="en" Profile="Legacy" Scale="1" Text="[vPhone]" />
+                                    </ActivityFunc>
+                                  </ui:GetOCRText.OCREngine>
+                                  <ui:GetOCRText.Target>
+                                    <ui:Target Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="d3cadf3e6e0842a4456d522a3e741078" Selector="&lt;wnd app='rundll32.exe' cls='Photo_Lightweight_Viewer' omit:title='BusinessCard5.png - Windows Photo Viewer' /&gt;&lt;wnd cls='Photos_PhotoCanvas' /&gt;&lt;ctrl role='client' /&gt;" WaitForReady="INTERACTIVE">
+                                      <ui:Target.ClippingRegion>
+                                        <ui:Region Rectangle="236, 566, 365, 71" />
+                                      </ui:Target.ClippingRegion>
+                                    </ui:Target>
+                                  </ui:GetOCRText.Target>
+                                </ui:GetOCRText>
+                                <ui:GetOCRText Text="{x:Null}" WordsInfo="{x:Null}" DisplayName="Get OCR Text 'client'" sap2010:WorkflowViewState.IdRef="GetOCRText_16">
+                                  <ui:GetOCRText.OCREngine>
+                                    <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
+                                      <ActivityFunc.Argument>
+                                        <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                                      </ActivityFunc.Argument>
+                                      <ui:MicrosoftOCR FilterRegion="{x:Null}" DisplayName="Microsoft OCR" ExtractWords="True" sap2010:WorkflowViewState.IdRef="MicrosoftOCR_20" Image="[Image]" Language="en" Profile="Legacy" Scale="1" Text="[vEmail]" />
+                                    </ActivityFunc>
+                                  </ui:GetOCRText.OCREngine>
+                                  <ui:GetOCRText.Target>
+                                    <ui:Target Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="30800af14a9c3a8beb3a57399d6a91f3" Selector="&lt;wnd app='rundll32.exe' cls='Photo_Lightweight_Viewer' omit:title='BusinessCard5.png - Windows Photo Viewer' /&gt;&lt;wnd cls='Photos_PhotoCanvas' /&gt;&lt;ctrl role='client' /&gt;" WaitForReady="INTERACTIVE">
+                                      <ui:Target.ClippingRegion>
+                                        <ui:Region Rectangle="232, 628, 638, 61" />
+                                      </ui:Target.ClippingRegion>
+                                    </ui:Target>
+                                  </ui:GetOCRText.Target>
+                                </ui:GetOCRText>
+                                <ui:GetOCRText Text="{x:Null}" WordsInfo="{x:Null}" DisplayName="Get OCR Text 'client'" sap2010:WorkflowViewState.IdRef="GetOCRText_17">
+                                  <ui:GetOCRText.OCREngine>
+                                    <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
+                                      <ActivityFunc.Argument>
+                                        <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                                      </ActivityFunc.Argument>
+                                      <ui:MicrosoftOCR FilterRegion="{x:Null}" DisplayName="Microsoft OCR" ExtractWords="True" sap2010:WorkflowViewState.IdRef="MicrosoftOCR_21" Image="[Image]" Language="en" Profile="Legacy" Scale="1" Text="[vCompanyWebsite]" />
+                                    </ActivityFunc>
+                                  </ui:GetOCRText.OCREngine>
+                                  <ui:GetOCRText.Target>
+                                    <ui:Target Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="c80a3ae2229fda317cc70c0cbb84df16" Selector="&lt;wnd app='rundll32.exe' cls='Photo_Lightweight_Viewer' omit:title='BusinessCard5.png - Windows Photo Viewer' /&gt;&lt;wnd cls='Photos_PhotoCanvas' /&gt;&lt;ctrl role='client' /&gt;" WaitForReady="INTERACTIVE">
+                                      <ui:Target.ClippingRegion>
+                                        <ui:Region Rectangle="233, 484, 499, 72" />
+                                      </ui:Target.ClippingRegion>
+                                    </ui:Target>
+                                  </ui:GetOCRText.Target>
+                                </ui:GetOCRText>
+                                <ui:GetOCRText Text="{x:Null}" WordsInfo="{x:Null}" DisplayName="Get OCR Text 'client'" sap2010:WorkflowViewState.IdRef="GetOCRText_18">
+                                  <ui:GetOCRText.OCREngine>
+                                    <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
+                                      <ActivityFunc.Argument>
+                                        <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                                      </ActivityFunc.Argument>
+                                      <ui:MicrosoftOCR FilterRegion="{x:Null}" DisplayName="Microsoft OCR" ExtractWords="True" sap2010:WorkflowViewState.IdRef="MicrosoftOCR_22" Image="[Image]" Language="en" Profile="Legacy" Scale="1" Text="[vAddress]" />
+                                    </ActivityFunc>
+                                  </ui:GetOCRText.OCREngine>
+                                  <ui:GetOCRText.Target>
+                                    <ui:Target Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="7a367d6cdb02aa62a4f15911b9f5cf13" Selector="&lt;wnd app='rundll32.exe' cls='Photo_Lightweight_Viewer' omit:title='BusinessCard5.png - Windows Photo Viewer' /&gt;&lt;wnd cls='Photos_PhotoCanvas' /&gt;&lt;ctrl role='client' /&gt;" WaitForReady="INTERACTIVE">
+                                      <ui:Target.ClippingRegion>
+                                        <ui:Region Rectangle="233, 380, 453, 62" />
+                                      </ui:Target.ClippingRegion>
+                                    </ui:Target>
+                                  </ui:GetOCRText.Target>
+                                </ui:GetOCRText>
+                                <ui:GetOCRText Text="{x:Null}" WordsInfo="{x:Null}" DisplayName="Get OCR Text 'client'" sap2010:WorkflowViewState.IdRef="GetOCRText_20">
+                                  <ui:GetOCRText.OCREngine>
+                                    <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
+                                      <ActivityFunc.Argument>
+                                        <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                                      </ActivityFunc.Argument>
+                                      <ui:MicrosoftOCR FilterRegion="{x:Null}" DisplayName="Microsoft OCR" ExtractWords="True" sap2010:WorkflowViewState.IdRef="MicrosoftOCR_25" Image="[Image]" Language="en" Profile="Legacy" Scale="1" Text="[vAddress2]" />
+                                    </ActivityFunc>
+                                  </ui:GetOCRText.OCREngine>
+                                  <ui:GetOCRText.Target>
+                                    <ui:Target Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="4220944d17fa4bc044def91a75762ccb" Selector="&lt;wnd app='rundll32.exe' cls='Photo_Lightweight_Viewer' omit:title='BusinessCard5.png - Windows Photo Viewer' /&gt;&lt;wnd cls='Photos_PhotoCanvas' /&gt;&lt;ctrl role='client' /&gt;" WaitForReady="INTERACTIVE">
+                                      <ui:Target.ClippingRegion>
+                                        <ui:Region Rectangle="232, 436, 492, 58" />
+                                      </ui:Target.ClippingRegion>
+                                    </ui:Target>
+                                  </ui:GetOCRText.Target>
+                                </ui:GetOCRText>
+                                <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" Buttons="Ok" DisplayName="Message Box" sap2010:WorkflowViewState.IdRef="MessageBox_9" Text="[&quot;Name : &quot; + vname +  vbCrLf + &quot;Company : &quot; + vCompany +  vbCrLf + &quot;Position : &quot; +  vPosition +  vbCrLf + &quot;Email : &quot; + vEmail +  vbCrLf + &quot;Address Line 1: &quot; + vAddress+  vbCrLf + &quot;Address Line 2: &quot;+vAddress2 + vbCrLf + &quot;Company Website : &quot; + vCompanyWebsite +  vbCrLf + &quot;Phone : &quot; +vphone]" TopMost="True" />
+                                <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send Hotkey 'rundll32.exe BusinessCa...'" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_12" Key="f4" KeyModifiers="Alt" SendWindowMessages="False" SpecialKey="True">
+                                  <ui:SendHotkey.Target>
+                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="a4b21f74f478722ea5cbd1f21d747736" Selector="&lt;wnd app='rundll32.exe' cls='Photo_Lightweight_Viewer' omit:title='BusinessCard5.png - Windows Photo Viewer' /&gt;" WaitForReady="INTERACTIVE" />
+                                  </ui:SendHotkey.Target>
+                                </ui:SendHotkey>
+                              </Sequence>
+                            </Sequence>
+                            <FlowStep.Next>
+                              <x:Reference>__ReferenceID1</x:Reference>
+                            </FlowStep.Next>
+                          </FlowStep>
+                        </FlowDecision.True>
+                        <FlowDecision.False>
+                          <FlowStep x:Name="__ReferenceID15" sap2010:WorkflowViewState.IdRef="FlowStep_17">
+                            <Sequence sap2010:WorkflowViewState.IdRef="Sequence_41">
+                              <ui:WriteCell Cell="[&quot;A&quot;+ eCounter.ToString]" DisplayName="Write Cell" sap2010:WorkflowViewState.IdRef="WriteCell_10" SheetName="Sheet1" Text="[outText]" WorkbookPath="New Buisness card.xlsx" />
+                              <Assign sap2010:WorkflowViewState.IdRef="Assign_22">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="ui:GenericValue">[eCounter]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="ui:GenericValue">[eCounter+1]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </Sequence>
+                            <FlowStep.Next>
+                              <x:Reference>__ReferenceID2</x:Reference>
+                            </FlowStep.Next>
+                          </FlowStep>
+                        </FlowDecision.False>
+                      </FlowDecision>
+                    </FlowDecision.False>
+                  </FlowDecision>
+                </FlowDecision.False>
+              </FlowDecision>
+            </FlowStep.Next>
+          </FlowStep>
+        </FlowStep.Next>
+      </FlowStep>
+    </Flowchart.StartNode>
+    <x:Reference>__ReferenceID3</x:Reference>
+    <x:Reference>__ReferenceID0</x:Reference>
+    <x:Reference>__ReferenceID4</x:Reference>
+    <x:Reference>__ReferenceID5</x:Reference>
+    <x:Reference>__ReferenceID6</x:Reference>
+    <x:Reference>__ReferenceID7</x:Reference>
+    <x:Reference>__ReferenceID8</x:Reference>
+    <x:Reference>__ReferenceID9</x:Reference>
+    <x:Reference>__ReferenceID1</x:Reference>
+    <x:Reference>__ReferenceID2</x:Reference>
+    <x:Reference>__ReferenceID10</x:Reference>
+    <x:Reference>__ReferenceID11</x:Reference>
+    <x:Reference>__ReferenceID12</x:Reference>
+    <x:Reference>__ReferenceID13</x:Reference>
+    <x:Reference>__ReferenceID14</x:Reference>
+    <x:Reference>__ReferenceID15</x:Reference>
+    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
+  </Flowchart>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="243.2,60" />
+      <sap2010:ViewStateData Id="Assign_4" sap:VirtualizedContainerService.HintSize="243.2,60" />
+      <sap2010:ViewStateData Id="Assign_21" sap:VirtualizedContainerService.HintSize="243.2,60" />
+      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="200,52.8">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_6" sap:VirtualizedContainerService.HintSize="314.4,60" />
+      <sap2010:ViewStateData Id="LoadImage_2" sap:VirtualizedContainerService.HintSize="314.4,60" />
+      <sap2010:ViewStateData Id="MicrosoftOCR_4" sap:VirtualizedContainerService.HintSize="314.4,22.4" />
+      <sap2010:ViewStateData Id="Sequence_17" sap:VirtualizedContainerService.HintSize="200,52.8">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="SendHotkey_1" sap:VirtualizedContainerService.HintSize="314.4,117.6" />
+      <sap2010:ViewStateData Id="TypeInto_1" sap:VirtualizedContainerService.HintSize="314.4,135.2" />
+      <sap2010:ViewStateData Id="MicrosoftOCR_5" sap:VirtualizedContainerService.HintSize="200,22.4" />
+      <sap2010:ViewStateData Id="GetOCRText_1" sap:VirtualizedContainerService.HintSize="314.4,169.6" />
+      <sap2010:ViewStateData Id="MicrosoftOCR_6" sap:VirtualizedContainerService.HintSize="200,22.4" />
+      <sap2010:ViewStateData Id="GetOCRText_2" sap:VirtualizedContainerService.HintSize="314.4,169.6" />
+      <sap2010:ViewStateData Id="MicrosoftOCR_7" sap:VirtualizedContainerService.HintSize="200,22.4" />
+      <sap2010:ViewStateData Id="GetOCRText_3" sap:VirtualizedContainerService.HintSize="314.4,169.6" />
+      <sap2010:ViewStateData Id="MicrosoftOCR_8" sap:VirtualizedContainerService.HintSize="200,22.4" />
+      <sap2010:ViewStateData Id="GetOCRText_4" sap:VirtualizedContainerService.HintSize="314.4,169.6" />
+      <sap2010:ViewStateData Id="MessageBox_7" sap:VirtualizedContainerService.HintSize="314.4,60" />
+      <sap2010:ViewStateData Id="SendHotkey_4" sap:VirtualizedContainerService.HintSize="314.4,156" />
+      <sap2010:ViewStateData Id="Sequence_18" sap:VirtualizedContainerService.HintSize="200,52.8">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_16" sap:VirtualizedContainerService.HintSize="511.2,60" />
+      <sap2010:ViewStateData Id="Assign_17" sap:VirtualizedContainerService.HintSize="511.2,60" />
+      <sap2010:ViewStateData Id="Assign_18" sap:VirtualizedContainerService.HintSize="243.2,60" />
+      <sap2010:ViewStateData Id="Assign_19" sap:VirtualizedContainerService.HintSize="243.2,60" />
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="511.2,209.6" />
+      <sap2010:ViewStateData Id="WriteCell_1" sap:VirtualizedContainerService.HintSize="511.2,116" />
+      <sap2010:ViewStateData Id="WriteCell_2" sap:VirtualizedContainerService.HintSize="511.2,116" />
+      <sap2010:ViewStateData Id="WriteCell_9" sap:VirtualizedContainerService.HintSize="511.2,116" />
+      <sap2010:ViewStateData Id="WriteCell_3" sap:VirtualizedContainerService.HintSize="511.2,116" />
+      <sap2010:ViewStateData Id="WriteCell_4" sap:VirtualizedContainerService.HintSize="511.2,116" />
+      <sap2010:ViewStateData Id="WriteCell_5" sap:VirtualizedContainerService.HintSize="511.2,116" />
+      <sap2010:ViewStateData Id="WriteCell_6" sap:VirtualizedContainerService.HintSize="511.2,116" />
+      <sap2010:ViewStateData Id="WriteCell_7" sap:VirtualizedContainerService.HintSize="511.2,116" />
+      <sap2010:ViewStateData Id="WriteCell_8" sap:VirtualizedContainerService.HintSize="511.2,116" />
+      <sap2010:ViewStateData Id="Sequence_26" sap:VirtualizedContainerService.HintSize="200,52.8">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_8" sap:VirtualizedContainerService.HintSize="243.2,60" />
+      <sap2010:ViewStateData Id="Assign_9" sap:VirtualizedContainerService.HintSize="243.2,60" />
+      <sap2010:ViewStateData Id="Assign_10" sap:VirtualizedContainerService.HintSize="243.2,60" />
+      <sap2010:ViewStateData Id="Assign_11" sap:VirtualizedContainerService.HintSize="243.2,60" />
+      <sap2010:ViewStateData Id="Assign_12" sap:VirtualizedContainerService.HintSize="243.2,60" />
+      <sap2010:ViewStateData Id="Assign_13" sap:VirtualizedContainerService.HintSize="243.2,60" />
+      <sap2010:ViewStateData Id="Assign_14" sap:VirtualizedContainerService.HintSize="243.2,60" />
+      <sap2010:ViewStateData Id="Assign_15" sap:VirtualizedContainerService.HintSize="243.2,60" />
+      <sap2010:ViewStateData Id="Sequence_23" sap:VirtualizedContainerService.HintSize="200,52.8">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_12">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">670,153.6</av:Point>
+            <av:Size x:Key="ShapeSize">200,52.8</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">670,180 600,180</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="SendHotkey_13" sap:VirtualizedContainerService.HintSize="314.4,117.6" />
+      <sap2010:ViewStateData Id="TypeInto_20" sap:VirtualizedContainerService.HintSize="314.4,135.2" />
+      <sap2010:ViewStateData Id="SendHotkey_14" sap:VirtualizedContainerService.HintSize="314.4,156" />
+      <sap2010:ViewStateData Id="SendHotkey_15" sap:VirtualizedContainerService.HintSize="314.4,156" />
+      <sap2010:ViewStateData Id="MicrosoftOCR_24" sap:VirtualizedContainerService.HintSize="200,22.4" />
+      <sap2010:ViewStateData Id="ClickOCRText_1" sap:VirtualizedContainerService.HintSize="314.4,202.4" />
+      <sap2010:ViewStateData Id="SendHotkey_16" sap:VirtualizedContainerService.HintSize="314.4,156" />
+      <sap2010:ViewStateData Id="SendHotkey_17" sap:VirtualizedContainerService.HintSize="314.4,156" />
+      <sap2010:ViewStateData Id="SendHotkey_18" sap:VirtualizedContainerService.HintSize="314.4,156" />
+      <sap2010:ViewStateData Id="Sequence_24" sap:VirtualizedContainerService.HintSize="200,52.8">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="TypeInto_21" sap:VirtualizedContainerService.HintSize="414.4,135.2" />
+      <sap2010:ViewStateData Id="TypeInto_22" sap:VirtualizedContainerService.HintSize="414.4,135.2" />
+      <sap2010:ViewStateData Id="Click_1" sap:VirtualizedContainerService.HintSize="414.4,107.2" />
+      <sap2010:ViewStateData Id="ReadRange_1" sap:VirtualizedContainerService.HintSize="367.2,88" />
+      <sap2010:ViewStateData Id="Click_2" sap:VirtualizedContainerService.HintSize="367.2,107.2" />
+      <sap2010:ViewStateData Id="Click_3" sap:VirtualizedContainerService.HintSize="367.2,107.2" />
+      <sap2010:ViewStateData Id="TypeInto_23" sap:VirtualizedContainerService.HintSize="314.4,135.2" />
+      <sap2010:ViewStateData Id="Click_4" sap:VirtualizedContainerService.HintSize="314.4,107.2" />
+      <sap2010:ViewStateData Id="Sequence_30" sap:VirtualizedContainerService.HintSize="336.8,407.2">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEachRow_1" sap:VirtualizedContainerService.HintSize="367.2,556" />
+      <sap2010:ViewStateData Id="Sequence_31" sap:VirtualizedContainerService.HintSize="389.6,1103.2">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WithWorkbook_1" sap:VirtualizedContainerService.HintSize="414.4,1212.8" />
+      <sap2010:ViewStateData Id="Sequence_27" sap:VirtualizedContainerService.HintSize="436.8,1835.2">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_28" sap:VirtualizedContainerService.HintSize="459.2,1960">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="OpenBrowser_1" sap:VirtualizedContainerService.HintSize="473.6,2060" />
+      <sap2010:ViewStateData Id="Sequence_29" sap:VirtualizedContainerService.HintSize="200,52.8">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ReadRange_2" sap:VirtualizedContainerService.HintSize="539.2,88" />
+      <sap2010:ViewStateData Id="Click_15" sap:VirtualizedContainerService.HintSize="539.2,107.2" />
+      <sap2010:ViewStateData Id="Click_6" sap:VirtualizedContainerService.HintSize="539.2,107.2" />
+      <sap2010:ViewStateData Id="MessageBox_10" sap:VirtualizedContainerService.HintSize="314.4,60" />
+      <sap2010:ViewStateData Id="Sequence_40" sap:VirtualizedContainerService.HintSize="336.8,184.8">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="CommentOut_4" sap:VirtualizedContainerService.HintSize="464,263.2" />
+      <sap2010:ViewStateData Id="TypeInto_25" sap:VirtualizedContainerService.HintSize="464,135.2" />
+      <sap2010:ViewStateData Id="TypeInto_24" sap:VirtualizedContainerService.HintSize="464,135.2" />
+      <sap2010:ViewStateData Id="Click_7" sap:VirtualizedContainerService.HintSize="464,107.2" />
+      <sap2010:ViewStateData Id="TypeInto_27" sap:VirtualizedContainerService.HintSize="464,135.2" />
+      <sap2010:ViewStateData Id="Click_8" sap:VirtualizedContainerService.HintSize="464,107.2" />
+      <sap2010:ViewStateData Id="Assign_20" sap:VirtualizedContainerService.HintSize="464,60" />
+      <sap2010:ViewStateData Id="Click_9" sap:VirtualizedContainerService.HintSize="464,107.2" />
+      <sap2010:ViewStateData Id="TypeInto_28" sap:VirtualizedContainerService.HintSize="464,135.2" />
+      <sap2010:ViewStateData Id="TypeInto_29" sap:VirtualizedContainerService.HintSize="464,135.2" />
+      <sap2010:ViewStateData Id="TypeInto_30" sap:VirtualizedContainerService.HintSize="464,135.2" />
+      <sap2010:ViewStateData Id="Click_10" sap:VirtualizedContainerService.HintSize="464,107.2" />
+      <sap2010:ViewStateData Id="SendHotkey_19" sap:VirtualizedContainerService.HintSize="464,156" />
+      <sap2010:ViewStateData Id="TypeInto_31" sap:VirtualizedContainerService.HintSize="314.4,135.2" />
+      <sap2010:ViewStateData Id="TypeInto_33" sap:VirtualizedContainerService.HintSize="314.4,135.2" />
+      <sap2010:ViewStateData Id="TypeInto_32" sap:VirtualizedContainerService.HintSize="314.4,135.2" />
+      <sap2010:ViewStateData Id="TypeInto_34" sap:VirtualizedContainerService.HintSize="314.4,135.2" />
+      <sap2010:ViewStateData Id="Sequence_39" sap:VirtualizedContainerService.HintSize="336.8,785.6">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="464,935.2" />
+      <sap2010:ViewStateData Id="Click_11" sap:VirtualizedContainerService.HintSize="464,107.2" />
+      <sap2010:ViewStateData Id="Sequence_32" sap:VirtualizedContainerService.HintSize="486.4,3446.4">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_33" sap:VirtualizedContainerService.HintSize="508.8,3571.2">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEachRow_2" sap:VirtualizedContainerService.HintSize="539.2,3720" />
+      <sap2010:ViewStateData Id="Click_12" sap:VirtualizedContainerService.HintSize="539.2,107.2" />
+      <sap2010:ViewStateData Id="Sequence_34" sap:VirtualizedContainerService.HintSize="561.6,4414.4">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WithWorkbook_2" sap:VirtualizedContainerService.HintSize="576,4524" />
+      <sap2010:ViewStateData Id="Sequence_35" sap:VirtualizedContainerService.HintSize="200,52.8">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_16">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">1080,303.6</av:Point>
+            <av:Size x:Key="ShapeSize">200,52.8</av:Size>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_15">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">1080,153.6</av:Point>
+            <av:Size x:Key="ShapeSize">200,52.8</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">1180,206.4 1180,303.6</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_13">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">840,273.6</av:Point>
+            <av:Size x:Key="ShapeSize">200,52.8</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">940,273.6 940,180 1080,180</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowDecision_5" sap:VirtualizedContainerService.HintSize="70.4,87.2">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <av:Point x:Key="ShapeLocation">820.4,376.4</av:Point>
+            <av:Size x:Key="ShapeSize">70.4,87.2</av:Size>
+            <av:PointCollection x:Key="TrueConnector">820.4,420 770,420 770,206.4</av:PointCollection>
+            <av:PointCollection x:Key="FalseConnector">890.8,420 940,420 940,326.4</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_14">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">890,543.6</av:Point>
+            <av:Size x:Key="ShapeSize">200,52.8</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">990,543.6 990,513.6 855.6,513.6 855.6,463.6</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowSwitch`1_1" sap:VirtualizedContainerService.HintSize="70.4,87.2">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <av:Point x:Key="ShapeLocation">834.8,636.4</av:Point>
+            <av:Size x:Key="ShapeSize">70.4,87.2</av:Size>
+            <av:PointCollection x:Key="Default">870,636.4 870,606.4 990,606.4 990,596.4</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_8">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">30,593.6</av:Point>
+            <av:Size x:Key="ShapeSize">200,52.8</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">130,646.4 130,701.8 834.8,701.8</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="SendHotkey_2" sap:VirtualizedContainerService.HintSize="314.4,117.6" />
+      <sap2010:ViewStateData Id="TypeInto_2" sap:VirtualizedContainerService.HintSize="314.4,135.2" />
+      <sap2010:ViewStateData Id="MicrosoftOCR_9" sap:VirtualizedContainerService.HintSize="200,22.4" />
+      <sap2010:ViewStateData Id="GetOCRText_5" sap:VirtualizedContainerService.HintSize="314.4,169.6" />
+      <sap2010:ViewStateData Id="MicrosoftOCR_10" sap:VirtualizedContainerService.HintSize="200,22.4" />
+      <sap2010:ViewStateData Id="GetOCRText_6" sap:VirtualizedContainerService.HintSize="314.4,169.6" />
+      <sap2010:ViewStateData Id="MicrosoftOCR_11" sap:VirtualizedContainerService.HintSize="200,22.4" />
+      <sap2010:ViewStateData Id="GetOCRText_7" sap:VirtualizedContainerService.HintSize="314.4,169.6" />
+      <sap2010:ViewStateData Id="MicrosoftOCR_12" sap:VirtualizedContainerService.HintSize="200,22.4" />
+      <sap2010:ViewStateData Id="GetOCRText_8" sap:VirtualizedContainerService.HintSize="314.4,169.6" />
+      <sap2010:ViewStateData Id="MicrosoftOCR_13" sap:VirtualizedContainerService.HintSize="200,22.4" />
+      <sap2010:ViewStateData Id="GetOCRText_9" sap:VirtualizedContainerService.HintSize="314.4,169.6" />
+      <sap2010:ViewStateData Id="MicrosoftOCR_14" sap:VirtualizedContainerService.HintSize="200,22.4" />
+      <sap2010:ViewStateData Id="GetOCRText_10" sap:VirtualizedContainerService.HintSize="314.4,169.6" />
+      <sap2010:ViewStateData Id="MessageBox_8" sap:VirtualizedContainerService.HintSize="314.4,60" />
+      <sap2010:ViewStateData Id="SendHotkey_5" sap:VirtualizedContainerService.HintSize="314.4,156" />
+      <sap2010:ViewStateData Id="Sequence_19" sap:VirtualizedContainerService.HintSize="336.8,1971.2">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_20" sap:VirtualizedContainerService.HintSize="200,52.8">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_9">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">270,593.6</av:Point>
+            <av:Size x:Key="ShapeSize">200,52.8</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">370,646.4 370,680 834.8,680</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="SendHotkey_3" sap:VirtualizedContainerService.HintSize="314.4,117.6" />
+      <sap2010:ViewStateData Id="TypeInto_3" sap:VirtualizedContainerService.HintSize="314.4,135.2" />
+      <sap2010:ViewStateData Id="MicrosoftOCR_15" sap:VirtualizedContainerService.HintSize="200,22.4" />
+      <sap2010:ViewStateData Id="GetOCRText_11" sap:VirtualizedContainerService.HintSize="314.4,169.6" />
+      <sap2010:ViewStateData Id="MicrosoftOCR_16" sap:VirtualizedContainerService.HintSize="200,22.4" />
+      <sap2010:ViewStateData Id="GetOCRText_12" sap:VirtualizedContainerService.HintSize="314.4,169.6" />
+      <sap2010:ViewStateData Id="MicrosoftOCR_17" sap:VirtualizedContainerService.HintSize="200,22.4" />
+      <sap2010:ViewStateData Id="GetOCRText_13" sap:VirtualizedContainerService.HintSize="314.4,169.6" />
+      <sap2010:ViewStateData Id="MicrosoftOCR_18" sap:VirtualizedContainerService.HintSize="200,22.4" />
+      <sap2010:ViewStateData Id="GetOCRText_14" sap:VirtualizedContainerService.HintSize="314.4,169.6" />
+      <sap2010:ViewStateData Id="MicrosoftOCR_19" sap:VirtualizedContainerService.HintSize="200,22.4" />
+      <sap2010:ViewStateData Id="GetOCRText_15" sap:VirtualizedContainerService.HintSize="314.4,169.6" />
+      <sap2010:ViewStateData Id="MicrosoftOCR_20" sap:VirtualizedContainerService.HintSize="200,22.4" />
+      <sap2010:ViewStateData Id="GetOCRText_16" sap:VirtualizedContainerService.HintSize="314.4,169.6" />
+      <sap2010:ViewStateData Id="MicrosoftOCR_21" sap:VirtualizedContainerService.HintSize="200,22.4" />
+      <sap2010:ViewStateData Id="GetOCRText_17" sap:VirtualizedContainerService.HintSize="314.4,169.6" />
+      <sap2010:ViewStateData Id="MicrosoftOCR_22" sap:VirtualizedContainerService.HintSize="200,22.4" />
+      <sap2010:ViewStateData Id="GetOCRText_18" sap:VirtualizedContainerService.HintSize="314.4,169.6" />
+      <sap2010:ViewStateData Id="MicrosoftOCR_25" sap:VirtualizedContainerService.HintSize="200,22.4" />
+      <sap2010:ViewStateData Id="GetOCRText_20" sap:VirtualizedContainerService.HintSize="314.4,169.6" />
+      <sap2010:ViewStateData Id="MessageBox_9" sap:VirtualizedContainerService.HintSize="314.4,60" />
+      <sap2010:ViewStateData Id="SendHotkey_12" sap:VirtualizedContainerService.HintSize="314.4,156" />
+      <sap2010:ViewStateData Id="Sequence_21" sap:VirtualizedContainerService.HintSize="336.8,2600">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_22" sap:VirtualizedContainerService.HintSize="200,52.8">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_10">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">510,593.6</av:Point>
+            <av:Size x:Key="ShapeSize">200,52.8</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">610,646.4 610,658.2 834.8,658.2</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WriteCell_10" sap:VirtualizedContainerService.HintSize="314.4,116" />
+      <sap2010:ViewStateData Id="Assign_22" sap:VirtualizedContainerService.HintSize="314.4,60" />
+      <sap2010:ViewStateData Id="Sequence_41" sap:VirtualizedContainerService.HintSize="200,52.8">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_17">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">590,473.6</av:Point>
+            <av:Size x:Key="ShapeSize">200,52.8</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">790,500 855.6,500 855.6,463.6</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowDecision_2" sap:VirtualizedContainerService.HintSize="101.6,87.2">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <av:Point x:Key="ShapeLocation">439.2,356.4</av:Point>
+            <av:Size x:Key="ShapeSize">101.6,87.2</av:Size>
+            <av:PointCollection x:Key="TrueConnector">439.2,400 409.2,400 409.2,563.6 610,563.6 610,593.6</av:PointCollection>
+            <av:PointCollection x:Key="FalseConnector">540.8,400 690,400 690,473.6</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowDecision_3" sap:VirtualizedContainerService.HintSize="101.6,87.2">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <av:Point x:Key="ShapeLocation">260,356.4</av:Point>
+            <av:Size x:Key="ShapeSize">101.6,87.2</av:Size>
+            <av:PointCollection x:Key="TrueConnector">260,400 230,400 230,563.6 370,563.6 370,593.6</av:PointCollection>
+            <av:PointCollection x:Key="FalseConnector">361.6,400 391.6,400 391.6,326.4 490,326.4 490,356.4</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowDecision_4" sap:VirtualizedContainerService.HintSize="101.6,87.2">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <av:Point x:Key="ShapeLocation">89.2,356.4</av:Point>
+            <av:Size x:Key="ShapeSize">101.6,87.2</av:Size>
+            <av:PointCollection x:Key="TrueConnector">89.2,400 70,400 70,563.6 130,563.6 130,593.6</av:PointCollection>
+            <av:PointCollection x:Key="FalseConnector">190.8,400 220.8,400 220.8,326.4 310.8,326.4 310.8,356.4</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_7">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">400,153.6</av:Point>
+            <av:Size x:Key="ShapeSize">200,52.8</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">500,206.4 500,236.4 140,236.4 140,356.4</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_6">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">100,153.6</av:Point>
+            <av:Size x:Key="ShapeSize">200,52.8</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">300,180 400,180</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Flowchart_1" sap:VirtualizedContainerService.HintSize="1294.4,780">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <av:Point x:Key="ShapeLocation">400,2.4</av:Point>
+            <av:Size x:Key="ShapeSize">60,75.2</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">430,77.6 430,107.6 200,107.6 200,153.6</av:PointCollection>
+            <x:Double x:Key="Width">1280</x:Double>
+            <x:Double x:Key="Height">743.36805831763127</x:Double>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Main_1" sap:VirtualizedContainerService.HintSize="1334.4,900" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>
