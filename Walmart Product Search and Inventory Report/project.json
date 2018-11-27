@@ -1,0 +1,27 @@
+{
+  "name": "Walmart API",
+  "description": "Walmart API",
+  "main": "Main.xaml",
+  "dependencies": {
+    "UiPath.Mail.Activities": "[1.2.6863.29868]",
+    "UiPath.UIAutomation.Activities": "[18.3.6897.22543]",
+    "UiPath.System.Activities": "[18.3.6897.22524]",
+    "UiPath.Excel.Activities": "[2.4.6884.25683]",
+    "UiPath.WebAPI.Activities": "[1.2.6863.33980]"
+  },
+  "schemaVersion": "3.2",
+  "studioVersion": "18.3.1.0",
+  "projectVersion": "1.0.0.0",
+  "runtimeOptions": {
+    "autoDispose": false,
+    "excludedLoggedData": [
+      "Private:*",
+      "*password*"
+    ]
+  },
+  "projectType": "Workflow",
+  "libraryOptions": {
+    "includeOriginalXaml": false,
+    "privateWorkflows": []
+  }
+}
