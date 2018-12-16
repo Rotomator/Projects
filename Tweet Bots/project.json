@@ -1,0 +1,26 @@
+{
+  "name": "Tweet Bot",
+  "description": "Blank Project",
+  "main": "Main.xaml",
+  "dependencies": {
+    "UiPath.UIAutomation.Activities": "[18.3.6897.22543]",
+    "UiPath.System.Activities": "[18.3.6897.22524]",
+    "UiPath": "[9.0.6893.27943]",
+    "UiPath.WebAPI.Activities": "[1.2.6863.33980]"
+  },
+  "schemaVersion": "3.2",
+  "studioVersion": "18.2",
+  "projectVersion": "1.0.6772.23856",
+  "runtimeOptions": {
+    "autoDispose": false,
+    "excludedLoggedData": [
+      "Private:*",
+      "*password*"
+    ]
+  },
+  "projectType": "Workflow",
+  "libraryOptions": {
+    "includeOriginalXaml": false,
+    "privateWorkflows": []
+  }
+}
